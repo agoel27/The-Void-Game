@@ -65,27 +65,27 @@ UI
  >
 
 ## Naming Convention
-> * Class Name 
-> *     Is a noun
-> *     Starts with uppercase letter
-> *     Follows camelCase
-> *     No underscores
-> * Variable Name
-> *     Contextually describes its value
-> *     Starts with lowercase letter
-> *     Follows camelCase
-> *     Underscores only for prefixes (such as p_ for pointer)
-> *     Digits allowed but not as first letter
-> *     Pointer variables place the ‘*’ near the variable name and not data type
-> *     Constants should be all uppercase and separated by underscores
-> * Function Name
-> *     Contextually describes its function
-> *     Begins with a verb
-> *     Starts with lowercase letter
-> *     Follows camelCase
-> * File Name
-> *     Follows camelCase or separated by dashes
-> *     Underscores not allowed 
+Class Name 
+> * Is a noun
+> * Starts with uppercase letter
+> * Follows camelCase
+> * No underscores
+Variable Name
+> * Contextually describes its value
+> * Starts with lowercase letter
+> * Follows camelCase
+> * Underscores only for prefixes (such as p_ for pointer)
+> * Digits allowed but not as first letter
+> * Pointer variables place the ‘*’ near the variable name and not data type
+> * Constants should be all uppercase and separated by underscores
+Function Name
+> * Contextually describes its function
+> * Begins with a verb
+> * Starts with lowercase letter
+> * Follows camelCase
+File Name
+> * Follows camelCase or separated by dashes
+> * Underscores not allowed 
 
  > ## Phase II
  > In addition to completing the "User Interface Specification" and "Class Diagram" sections below, you will need to:
