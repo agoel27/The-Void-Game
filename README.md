@@ -20,7 +20,7 @@
  ### Why is it important or interesting to you?
  > I've always felt a sense of excitement playing decision-based games that involve exploring different paths and seeing how my choices shape outcomes. Turning gaming into a real adventure gets me pumped to create a project with meaningful choices and their impact on players.
  ### What languages/tools/technologies do you plan to use? (This list may change over the course of the project)
-SFML Library for C++
+ > SFML Library for C++
  ### What will be the input/output of your project?
  Input
  > * User movement with arrow keys 
@@ -92,6 +92,30 @@ Gameobjects contain all the information necessary to render themselves to the sc
 The general flow is that main instantiates all gameobjects, interactables, and managers in the game and enters an update loop until the game is closed. 
 The interaction manager handles interactables and populates the textbox based on the interactable and story beats
 Buttons for the main menu will most likely also be handled by main. 
+
+## Naming Convention
+> * Class Name 
+> *    Is a noun
+> *    Starts with uppercase letter
+> *    Follows camelCase
+> *    No underscores
+> * Variable Name
+> *    Contextually describes its value
+> *    Starts with lowercase letter
+> *    Follows camelCase
+> *    Underscores only for prefixes (such as p_ for pointer)
+> *    Digits allowed but not as first letter
+> *    Pointer variables place the ‘*’ near the variable name and not data type
+> *    Constants should be all uppercase and separated by underscores
+> * Function Name
+> *    Contextually describes its function
+> *    Begins with a verb
+> *    Starts with lowercase letter
+> *    Follows camelCase
+> * File Name
+> *    Follows camelCase or separated by dashes
+> *    Underscores not allowed 
+
  
  > ## Phase III
  > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on week 8 during lab time.
