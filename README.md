@@ -23,40 +23,47 @@
 SFML Library for C++
  ### What will be the input/output of your project?
  Input
- >  > User movement with arrow keys 
- >  > Interaction with environment - Picking up objects, Using objects
- >  > Menu - Inventory, Equipable Items, Main Menu
- >  > Save Method?
+ > User movement with arrow keys 
+ > Interaction with environment - Picking up objects, Using objects
+ > Menu - Inventory, Equipable Items, Main Menu
+ > Save Method?
+ > 
 Output
- >  > Textbox Narration - Tells player objective and story/guides player
- >  > Game changes according to the player’s decisions
- >  > Beginning room, character sprites, music(?), sprite for objects in the room, animation(?) for moving objects
+ > Textbox Narration - Tells player objective and story/guides player
+ > Game changes according to the player’s decisions
+ > Beginning room, character sprites, music(?), sprite for objects in the room, animation(?) for moving objects
  ### What are the features that the project provides? This description should be in enough detail that the TA/instructor can determine the complexity of the project and if it is sufficient for the team members to complete in the time allotted.
- > Controls
- >  > Movement keys move player
- >  > Interact button searches for nearest interactable and triggers it
- >  > Enter key/Spacebar/click on screen moves textbox text along or closes textbox
- >  > Push/pull objects(?)
- > Visuals
- >  > SFML will render sprites to a windows application
- >  > Rudimentary 2-frame animations will scroll through a sprite sheet for each movement direction + stationary
- >  > Royalty Free sprites
- > Audio(?)
- >  > Two tracks of music, a during game and a win game
- >  > Button interaction sound effects
- > Interactables
- >  > Objects that populate the narration box when interacted with
- >  > Objects that add themselves to your inventory when interacted with
- > UI
- >  > Before game starts
- >  > Ask for player name
- >  > Ask for player’s favorite beverage that they drink in the morning
- >  > Choose ⅓ sprites designs (male, female, androgynus)
- >  > Narration box that can have text sent to it and expands/shrinks to contain it. If there is too much text, player input can move it along. 
- >  > Inventory/hotbar that has your items
- >  > Equipable Items character menu - could change character sprite appearance?
- >  > Quit game button
- 
+ > 
+Controls
+ > Movement keys move player
+ > Interact button searches for nearest interactable and triggers it
+ > Enter key/Spacebar/click on screen moves textbox text along or closes textbox
+ > Push/pull objects(?)
+ > 
+Visuals
+ > SFML will render sprites to a windows application
+ > Rudimentary 2-frame animations will scroll through a sprite sheet for each movement direction + stationary
+ > Royalty Free sprites
+ > 
+Audio(?)
+ > Two tracks of music, a during game and a win game
+ > Button interaction sound effects
+ > 
+Interactables
+ > Objects that populate the narration box when interacted with
+ > Objects that add themselves to your inventory when interacted with
+ > 
+UI
+ > Before game starts
+ > Ask for player name
+ > Ask for player’s favorite beverage that they drink in the morning
+ > Choose ⅓ sprites designs (male, female, androgynus)
+ > Narration box that can have text sent to it and expands/shrinks to contain it. If there is too much text, player input can move it along. 
+ > Inventory/hotbar that has your items
+ > Equipable Items character menu - could change character sprite appearance?
+ > Quit game button
+ > 
+
  > ## Phase II
  > In addition to completing the "User Interface Specification" and "Class Diagram" sections below, you will need to:
  > * Create an "Epic" (note) for each feature. Place these epics in the `Product Backlog` column
@@ -72,19 +79,19 @@ Output
  > Include a navigation diagram for your screens and the layout of each of those screens as desribed below. For all the layouts/diagrams, you can use any tool such as PowerPoint or a drawing program. (Specification requirement is adapted from [this template](https://redirect.cs.umbc.edu/~mgrass2/cmsc345/Template_UI.doc))
 
 ### Navigation Diagram
-> ![Navigation Diagram](https://github.com/cs100/final-project-thevoidgame/blob/master/NavigationDiagram.png?raw=true)
-> This Navigation Diagram represents a high-level visual overview of the user's journey within the game interface. It outlines the sequence of interactions and steps that players will follow to transition between screens and progress through the game. The green boxes correspond to distinct screen views. The connecting arrows and labels correspond to specific user actions or events that trigger the transition between screens.
+![Navigation Diagram](https://github.com/cs100/final-project-thevoidgame/blob/master/NavigationDiagram.png?raw=true)
+This Navigation Diagram represents a high-level visual overview of the user's journey within the game interface. It outlines the sequence of interactions and steps that players will follow to transition between screens and progress through the game. The green boxes correspond to distinct screen views. The connecting arrows and labels correspond to specific user actions or events that trigger the transition between screens.
 
 ### Screen Layouts
-> ![Layout Diagram](https://github.com/cs100/final-project-thevoidgame/blob/master/ProjectDiagram.png?raw=true)
-> 
+![Layout Diagram](https://github.com/cs100/final-project-thevoidgame/blob/master/ProjectDiagram.png?raw=true)
+
 ## Class Diagram
-> ![Class Diagram](https://github.com/cs100/final-project-thevoidgame/blob/master/ClassDiagram.png?raw=true)
- > All classes with an update function depend on main, it is in charge of running the update loop
- > Gameobjects contain all the information necessary to render themselves to the screen, main calls these renders at the end of update.
- > The general flow is that main instantiates all gameobjects, interactables, and managers in the game and enters an update loop until the game is closed. 
- > The interaction manager handles interactables and populates the textbox based on the interactable and story beats
- > Buttons for the main menu will most likely also be handled by main. 
+![Class Diagram](https://github.com/cs100/final-project-thevoidgame/blob/master/ClassDiagram.png?raw=true)
+All classes with an update function depend on main, it is in charge of running the update loop
+Gameobjects contain all the information necessary to render themselves to the screen, main calls these renders at the end of update.
+The general flow is that main instantiates all gameobjects, interactables, and managers in the game and enters an update loop until the game is closed. 
+The interaction manager handles interactables and populates the textbox based on the interactable and story beats
+Buttons for the main menu will most likely also be handled by main. 
  
  > ## Phase III
  > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on week 8 during lab time.
