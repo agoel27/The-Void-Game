@@ -72,17 +72,19 @@ Output
  > Include a navigation diagram for your screens and the layout of each of those screens as desribed below. For all the layouts/diagrams, you can use any tool such as PowerPoint or a drawing program. (Specification requirement is adapted from [this template](https://redirect.cs.umbc.edu/~mgrass2/cmsc345/Template_UI.doc))
 
 ### Navigation Diagram
-> [Navigation Diagram](./ProjectDiagram.png)
+> ![Navigation Diagram](https://github.com/cs100/final-project-thevoidgame/blob/master/NavigationDiagram.png?raw=true)
+> This Navigation Diagram represents a high-level visual overview of the user's journey within the game interface. It outlines the sequence of interactions and steps that players will follow to transition between screens and progress through the game. The green boxes correspond to distinct screen views. The connecting arrows and labels correspond to specific user actions or events that trigger the transition between screens.
 
 ### Screen Layouts
-> [Layout Diagram](./LayoutDiagram.png)
+> ![Layout Diagram](https://github.com/cs100/final-project-thevoidgame/blob/master/ProjectDiagram.png?raw=true)
 > 
 ## Class Diagram
-> [Class Diagram](./ClassDiagram.png)
+> ![Class Diagram](https://github.com/cs100/final-project-thevoidgame/blob/master/ClassDiagram.png?raw=true)
  > All classes with an update function depend on main, it is in charge of running the update loop
  > Gameobjects contain all the information necessary to render themselves to the screen, main calls these renders at the end of update.
  > The general flow is that main instantiates all gameobjects, interactables, and managers in the game and enters an update loop until the game is closed. 
  > The interaction manager handles interactables and populates the textbox based on the interactable and story beats
+ > Buttons for the main menu will most likely also be handled by main. 
  
  > ## Phase III
  > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on week 8 during lab time.
