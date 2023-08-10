@@ -62,7 +62,30 @@ UI
  > * Inventory/hotbar that has your items
  > * Equipable Items character menu - could change character sprite appearance?
  > * Quit game button
- > 
+ >
+
+## Naming Convention
+> * Class Name 
+> *     Is a noun
+> *     Starts with uppercase letter
+> *     Follows camelCase
+> *     No underscores
+> * Variable Name
+> *     Contextually describes its value
+> *     Starts with lowercase letter
+> *     Follows camelCase
+> *     Underscores only for prefixes (such as p_ for pointer)
+> *     Digits allowed but not as first letter
+> *     Pointer variables place the ‘*’ near the variable name and not data type
+> *     Constants should be all uppercase and separated by underscores
+> * Function Name
+> *     Contextually describes its function
+> *     Begins with a verb
+> *     Starts with lowercase letter
+> *     Follows camelCase
+> * File Name
+> *     Follows camelCase or separated by dashes
+> *     Underscores not allowed 
 
  > ## Phase II
  > In addition to completing the "User Interface Specification" and "Class Diagram" sections below, you will need to:
@@ -92,30 +115,6 @@ Gameobjects contain all the information necessary to render themselves to the sc
 The general flow is that main instantiates all gameobjects, interactables, and managers in the game and enters an update loop until the game is closed. 
 The interaction manager handles interactables and populates the textbox based on the interactable and story beats
 Buttons for the main menu will most likely also be handled by main. 
-
-## Naming Convention
-> * Class Name 
-> *    Is a noun
-> *    Starts with uppercase letter
-> *    Follows camelCase
-> *    No underscores
-> * Variable Name
-> *    Contextually describes its value
-> *    Starts with lowercase letter
-> *    Follows camelCase
-> *    Underscores only for prefixes (such as p_ for pointer)
-> *    Digits allowed but not as first letter
-> *    Pointer variables place the ‘*’ near the variable name and not data type
-> *    Constants should be all uppercase and separated by underscores
-> * Function Name
-> *    Contextually describes its function
-> *    Begins with a verb
-> *    Starts with lowercase letter
-> *    Follows camelCase
-> * File Name
-> *    Follows camelCase or separated by dashes
-> *    Underscores not allowed 
-
  
  > ## Phase III
  > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on week 8 during lab time.
