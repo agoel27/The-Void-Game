@@ -2,10 +2,10 @@
  > As you complete each section you **must** remove the prompt text. Every *turnin* of this project includes points for formatting of this README so keep it clean and keep it up to date. 
  > Prompt text is any lines beginning with "\>"
  > Replace anything between \<...\> with your project specifics and remove angle brackets. For example, you need to name your project and replace the header right below this line with that title (no angle brackets). 
-# \<Project title\>
+# The Void Game
  > Your author list below should include links to all members GitHub (remove existing author).
  
- > Authors: \<[Jeffrey McDaniel](https://github.com/jmcda001)\>
+ > Authors: [Ivan Marozau](https://github.com/MatterCollapse),[Aryan Goel](https://github.com/agoel27),[Angel Hernandez](https://github.com/ahern650),[Jacob Rozenkrants](https://github.com/jar04)
 
  > You will be forming a group of **FOUR** students and working on an interesting project. The project has 4 phases, each one with specific requirements. A list of proposed project ideas that have been successful in previous quarters is listed in the project specifications document on Canvas. You can select an idea from the list and start thinking about the features you will implement. If you want to propose your own original idea, you will have to contact your instructor to discuss the project and obtain written permission before you submit your project proposal (Phase 1). The project work should be divided almost equally among team members. You can of course help each other, but it needs to be clear who will be responsible for which features. Additionally, you are expected to follow Scrum patterns, specifically the use of a Scrum (Project) board, Sprints, and Scrum meetings.
 
@@ -17,14 +17,46 @@
 > * All project phases are to be submitted to this GitHub repository. You should modify this README file to reflect the different phases of the project. In addition, you should regularly hold sprint meetings with your group. You will need to hold two to three scrum/check-in meetings with your lab TA/reader at different times in addition to the final demo.
 
 ## Project Description
- > Your project description should summarize the project you are proposing. Be sure to include:
- > * Why is it important or interesting to you?
- > * What languages/tools/technologies do you plan to use? (This list may change over the course of the project)
- > * What will be the input/output of your project?
- > * What are the features that the project provides?
- > This description should be in enough detail that the TA/instructor can determine the complexity of the project and if it is sufficient for the team members to complete in the time allotted. 
- > 
- > You also need to set up an empty project board using GitHub projects (board view). Make sure you add the board under your project repository. You should also have a Product Backlog and In testing columns added.
+ # Why is it important or interesting to you?
+ > I've always felt a sense of excitement playing decision-based games that involve exploring different paths and seeing how my choices shape outcomes. Turning gaming into a real adventure gets me pumped to create a project with meaningful choices and their impact on players.
+ # What languages/tools/technologies do you plan to use? (This list may change over the course of the project)
+SFML Library for C++
+ # What will be the input/output of your project?
+ Input
+ >  > User movement with arrow keys 
+ >  > Interaction with environment - Picking up objects, Using objects
+ >  > Menu - Inventory, Equipable Items, Main Menu
+ >  > Save Method?
+Output
+ >  > Textbox Narration - Tells player objective and story/guides player
+ >  > Game changes according to the player’s decisions
+ >  > Beginning room, character sprites, music(?), sprite for objects in the room, animation(?) for moving objects
+ # What are the features that the project provides? This description should be in enough detail that the TA/instructor can determine the complexity of the project and if it is sufficient for the team members to complete in the time allotted.
+ > Controls
+ >  > Movement keys move player
+ >  > Interact button searches for nearest interactable and triggers it
+ >  > Enter key/Spacebar/click on screen moves textbox text along or closes textbox
+ >  > Push/pull objects(?)
+ > Visuals
+ >  > SFML will render sprites to a windows application
+ >  > Rudimentary 2-frame animations will scroll through a sprite sheet for each movement direction + stationary
+ >  > Royalty Free sprites
+ > Audio(?)
+ >  > Two tracks of music, a during game and a win game
+ >  > Button interaction sound effects
+ > Interactables
+ >  > Objects that populate the narration box when interacted with
+ >  > Objects that add themselves to your inventory when interacted with
+ > UI
+ >  > Before game starts
+ >  > Ask for player name
+ >  > Ask for player’s favorite beverage that they drink in the morning
+ >  > Choose ⅓ sprites designs (male, female, androgynus)
+ >  > Narration box that can have text sent to it and expands/shrinks to contain it. If there is too much text, player input can move it along. 
+ >  > Inventory/hotbar that has your items
+ >  > Equipable Items character menu - could change character sprite appearance?
+ >  > Quit game button
+ 
  > ## Phase II
  > In addition to completing the "User Interface Specification" and "Class Diagram" sections below, you will need to:
  > * Create an "Epic" (note) for each feature. Place these epics in the `Product Backlog` column
@@ -40,13 +72,17 @@
  > Include a navigation diagram for your screens and the layout of each of those screens as desribed below. For all the layouts/diagrams, you can use any tool such as PowerPoint or a drawing program. (Specification requirement is adapted from [this template](https://redirect.cs.umbc.edu/~mgrass2/cmsc345/Template_UI.doc))
 
 ### Navigation Diagram
-> Draw a diagram illustrating how the user can navigate from one screen to another. Here is an [example](https://creately.com/diagram/example/ikfqudv82/user-navigation-diagram-classic?r=v). It can be useful to label each symbol that represents a screen so that you can reference the screens in the next section or the rest of the document if necessary. Give a brief description of what the diagram represents.
+> [Navigation Diagram](./ProjectDiagram.png)
 
 ### Screen Layouts
-> Include the layout of each of your screens. The layout should describe the screen’s major components such as menus and prompts for user inputs, expected output, and buttons (if applicable). Explain what is on the layout, and the purpose of each menu item, button, etc. If many screens share the same layout, start by describing the general layout and then list the screens that will be using that layout and the differences between each of them.
-
+> [Layout Diagram](./LayoutDiagram.png)
+> 
 ## Class Diagram
- > Include a **class diagram(s)** for your project and a **description** of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper UML notation (as discussed in the course slides).
+> [Class Diagram](./ClassDiagram.png)
+ > All classes with an update function depend on main, it is in charge of running the update loop
+ > Gameobjects contain all the information necessary to render themselves to the screen, main calls these renders at the end of update.
+ > The general flow is that main instantiates all gameobjects, interactables, and managers in the game and enters an update loop until the game is closed. 
+ > The interaction manager handles interactables and populates the textbox based on the interactable and story beats
  
  > ## Phase III
  > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on week 8 during lab time.
