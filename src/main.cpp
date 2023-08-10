@@ -16,7 +16,7 @@ int main() {
     //PLAYER
     sf::Sprite player;
     sf::Texture player_forward;
-    player_forward.loadFromFile("Player.png");
+    player_forward.loadFromFile("resources/player.png");
     player.setTexture(player_forward);
     player.setScale(0.1f, 0.1f);
 
