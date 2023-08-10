@@ -17,11 +17,11 @@
 > * All project phases are to be submitted to this GitHub repository. You should modify this README file to reflect the different phases of the project. In addition, you should regularly hold sprint meetings with your group. You will need to hold two to three scrum/check-in meetings with your lab TA/reader at different times in addition to the final demo.
 
 ## Project Description
- # Why is it important or interesting to you?
+ ### Why is it important or interesting to you?
  > I've always felt a sense of excitement playing decision-based games that involve exploring different paths and seeing how my choices shape outcomes. Turning gaming into a real adventure gets me pumped to create a project with meaningful choices and their impact on players.
- # What languages/tools/technologies do you plan to use? (This list may change over the course of the project)
+ ### What languages/tools/technologies do you plan to use? (This list may change over the course of the project)
 SFML Library for C++
- # What will be the input/output of your project?
+ ### What will be the input/output of your project?
  Input
  >  > User movement with arrow keys 
  >  > Interaction with environment - Picking up objects, Using objects
@@ -31,7 +31,7 @@ Output
  >  > Textbox Narration - Tells player objective and story/guides player
  >  > Game changes according to the player’s decisions
  >  > Beginning room, character sprites, music(?), sprite for objects in the room, animation(?) for moving objects
- # What are the features that the project provides? This description should be in enough detail that the TA/instructor can determine the complexity of the project and if it is sufficient for the team members to complete in the time allotted.
+ ### What are the features that the project provides? This description should be in enough detail that the TA/instructor can determine the complexity of the project and if it is sufficient for the team members to complete in the time allotted.
  > Controls
  >  > Movement keys move player
  >  > Interact button searches for nearest interactable and triggers it
