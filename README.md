@@ -20,49 +20,72 @@
  ### Why is it important or interesting to you?
  > I've always felt a sense of excitement playing decision-based games that involve exploring different paths and seeing how my choices shape outcomes. Turning gaming into a real adventure gets me pumped to create a project with meaningful choices and their impact on players.
  ### What languages/tools/technologies do you plan to use? (This list may change over the course of the project)
-SFML Library for C++
+ > SFML Library for C++
  ### What will be the input/output of your project?
  Input
- > User movement with arrow keys 
- > Interaction with environment - Picking up objects, Using objects
- > Menu - Inventory, Equipable Items, Main Menu
- > Save Method?
+ > * User movement with arrow keys 
+ > * Interaction with environment - Picking up objects, Using objects
+ > * Menu - Inventory, Equipable Items, Main Menu
+ > * Save Method?
  > 
 Output
- > Textbox Narration - Tells player objective and story/guides player
- > Game changes according to the player’s decisions
- > Beginning room, character sprites, music(?), sprite for objects in the room, animation(?) for moving objects
+ > * Textbox Narration - Tells player objective and story/guides player
+ > * Game changes according to the player’s decisions
+ > * Beginning room, character sprites, music(?), sprite for objects in the room, animation(?) for moving objects
  ### What are the features that the project provides? This description should be in enough detail that the TA/instructor can determine the complexity of the project and if it is sufficient for the team members to complete in the time allotted.
  > 
 Controls
- > Movement keys move player
- > Interact button searches for nearest interactable and triggers it
- > Enter key/Spacebar/click on screen moves textbox text along or closes textbox
- > Push/pull objects(?)
+ > * Movement keys move player
+ > * Interact button searches for nearest interactable and triggers it
+ > * Enter key/Spacebar/click on screen moves textbox text along or closes textbox
+ > * Push/pull objects(?)
  > 
 Visuals
- > SFML will render sprites to a windows application
- > Rudimentary 2-frame animations will scroll through a sprite sheet for each movement direction + stationary
- > Royalty Free sprites
+ > * SFML will render sprites to a windows application
+ > * Rudimentary 2-frame animations will scroll through a sprite sheet for each movement direction + stationary
+ > * Royalty Free sprites
  > 
 Audio(?)
- > Two tracks of music, a during game and a win game
- > Button interaction sound effects
+ > * Two tracks of music, a during game and a win game
+ > * Button interaction sound effects
  > 
 Interactables
- > Objects that populate the narration box when interacted with
- > Objects that add themselves to your inventory when interacted with
+ > * Objects that populate the narration box when interacted with
+ > * Objects that add themselves to your inventory when interacted with
  > 
 UI
- > Before game starts
- > Ask for player name
- > Ask for player’s favorite beverage that they drink in the morning
- > Choose ⅓ sprites designs (male, female, androgynus)
- > Narration box that can have text sent to it and expands/shrinks to contain it. If there is too much text, player input can move it along. 
- > Inventory/hotbar that has your items
- > Equipable Items character menu - could change character sprite appearance?
- > Quit game button
- > 
+ > * Before game starts
+ > * Ask for player name
+ > * Ask for player’s favorite beverage that they drink in the morning
+ > * Choose ⅓ sprites designs (male, female, androgynus)
+ > * Narration box that can have text sent to it and expands/shrinks to contain it. If there is too much text, player input can move it along. 
+ > * Inventory/hotbar that has your items
+ > * Equipable Items character menu - could change character sprite appearance?
+ > * Quit game button
+ >
+
+## Naming Convention
+Class Name 
+> * Is a noun
+> * Starts with uppercase letter
+> * Follows camelCase
+> * No underscores
+Variable Name
+> * Contextually describes its value
+> * Starts with lowercase letter
+> * Follows camelCase
+> * Underscores only for prefixes (such as p_ for pointer)
+> * Digits allowed but not as first letter
+> * Pointer variables place the ‘*’ near the variable name and not data type
+> * Constants should be all uppercase and separated by underscores
+Function Name
+> * Contextually describes its function
+> * Begins with a verb
+> * Starts with lowercase letter
+> * Follows camelCase
+File Name
+> * Follows camelCase or separated by dashes
+> * Underscores not allowed 
 
  > ## Phase II
  > In addition to completing the "User Interface Specification" and "Class Diagram" sections below, you will need to:
