@@ -1,47 +1,17 @@
-#include <SFML/Graphics.hpp>
 #include <iostream>
 #include <stdlib.h>     // exit, EXIT_FAILURE
+#include "titleScreen.h"
+#include "StoryBeats.h"
 
 /*
-    This script renders the title screen using SFML graphics
-
+    NOTE: 
+    
     Font might break depending on where you compile this file from
         - Definitely works if working directory is ../final-project-thevoidgame
 
-    White rectangle background and title text are centered based on the TITLE_WINDOW_SIZE global const variables
-        - changing the font size of any title text will result in off-center position
+    White rectangle background and title text are centered based on the TITLE_WINDOW_SIZE macros from ScreenManager.cpp
+        - changing the font size of any text will result in off-center position
 */
-
-// render title screen from RenderWindow object
-void renderTitleScreen(sf::RenderWindow*);
-// process player input from title screen
-void processTitleScreenInput(sf::RenderWindow*, sf::Event*);
-
-// set title window size
-const int TITLE_WINDOW_SIZE_X = 800;
-const int TITLE_WINDOW_SIZE_Y = 800;
-
-int main() 
-{
-    // create window - can not be resized
-    sf::RenderWindow titleScreenWindow(sf::VideoMode(TITLE_WINDOW_SIZE_X, TITLE_WINDOW_SIZE_Y), "Title Screen", sf::Style::Close);
-
-    // create user event for title screen
-    sf::Event titleScreenEvent;
-
-    // run program while window is open - game loop
-    while (titleScreenWindow.isOpen())
-    {
-        
-        // call renderTitleScreen() func - renders title screen
-        renderTitleScreen(&titleScreenWindow);
-
-        // call getTitleScreenInput() func - processes user events 
-        processTitleScreenInput(&titleScreenWindow, &titleScreenEvent);
-    }
-
-    return 0;
-}
 
 /*
     This function renders the title screen using SFML graphics
@@ -50,65 +20,63 @@ int main()
     Input:      p_titleScreenWindow - pointer to RenderWindow object
     Output:     Renders title screen
 */
-void renderTitleScreen (sf::RenderWindow *p_titleScreenWindow) {
+void renderTitleScreen (sf::RenderWindow* p_titleScreenWindow)
+{
     // clear window with black color
     p_titleScreenWindow->clear(sf::Color::Black);
 
     // define rectangle 3/4 size of screen
-    sf::RectangleShape whiteRectangle(sf::Vector2f((3.f*TITLE_WINDOW_SIZE_X)/4.f, (3.f*TITLE_WINDOW_SIZE_Y)/4.f));
-    // set rectangle color to white
-    whiteRectangle.setFillColor(sf::Color::White);
-    // center white rectangle on screen
-    whiteRectangle.setPosition(TITLE_WINDOW_SIZE_X/8.f, TITLE_WINDOW_SIZE_Y/8.f);
-    // draw white rectangle on screen
-    p_titleScreenWindow->draw(whiteRectangle);
-
+    sf::RectangleShape whiteRectangle(sf::Vector2f((3.f*p_titleScreenWindow->getSize().x)/4.f, (3.f*p_titleScreenWindow->getSize().y)/4.f));
+    // create text variables
+    sf::Text gameNameText1;
+    sf::Text gameNameText2;
+    sf::Text enterKeyPrompt;
     // create font variables
     sf::Font titleFontImpact;
-    sf::Font titleFontArial;
+    sf::Font promptFontArial;
+
     // load fonts from resources directory
     if (!titleFontImpact.loadFromFile("resources/impact.ttf"))
     {
-        std::cout << "ERROR: could not load the impact font from resources directory\n - Please check the note at the top of title-screen.cpp\n";
+        std::cout << "ERROR: could not load the impact font from resources directory\n - Please check the note at the top of <screenName>.cpp\n";
         exit (EXIT_FAILURE);
     }
-    if (!titleFontArial.loadFromFile("resources/arial.ttf"))
+    if (!promptFontArial.loadFromFile("resources/arial.ttf"))
     {
         std::cout << "ERROR: could not load the arial font from resources directory\n - Please check the note at the top of title-screen.cpp\n";
         exit (EXIT_FAILURE);
     }
     
-    // create text variables
-    sf::Text titleText1;
-    sf::Text titleText2;
-    sf::Text titleText3;
-    // select fonts
-    titleText1.setFont(titleFontImpact);
-    titleText2.setFont(titleFontImpact);
-    titleText3.setFont(titleFontArial);
     // set text to display
-    titleText1.setString("The");
-    titleText2.setString("Void");
-    titleText3.setString("Press [ENTER] key");
+    gameNameText1.setString("The");
+    gameNameText2.setString("Void");
+    enterKeyPrompt.setString("Press [ENTER] key");
+    // select fonts
+    gameNameText1.setFont(titleFontImpact);
+    gameNameText2.setFont(titleFontImpact);
+    enterKeyPrompt.setFont(promptFontArial);
+    // set font styles
+    gameNameText1.setStyle(sf::Text::Bold);
+    gameNameText2.setStyle(sf::Text::Bold);
     // set font sizes
-    titleText1.setCharacterSize(225);
-    titleText2.setCharacterSize(225);
-    titleText3.setCharacterSize(50);
+    gameNameText1.setCharacterSize(225);
+    gameNameText2.setCharacterSize(225);
+    enterKeyPrompt.setCharacterSize(50);
     // set color
-    titleText1.setFillColor(sf::Color::Black);
-    titleText2.setFillColor(sf::Color::Black);
-    titleText3.setFillColor(sf::Color::Black);
-    // set text styles
-    titleText1.setStyle(sf::Text::Bold);
-    titleText2.setStyle(sf::Text::Bold);
-    //center positions of texts
-    titleText1.setPosition((TITLE_WINDOW_SIZE_X - 330.f)/2, ((TITLE_WINDOW_SIZE_Y - 550)/2.f));
-    titleText2.setPosition((TITLE_WINDOW_SIZE_X - 408.f)/2, ((TITLE_WINDOW_SIZE_Y - 550)/2.f) + (179.f+25.f));
-    titleText3.setPosition((TITLE_WINDOW_SIZE_X - 423.f)/2, ((TITLE_WINDOW_SIZE_Y - 550)/2.f) + (179.f+25.f) + (179.f+65.f));
-    // draw texts
-    p_titleScreenWindow->draw(titleText1);
-    p_titleScreenWindow->draw(titleText2);
-    p_titleScreenWindow->draw(titleText3);
+    whiteRectangle.setFillColor(sf::Color::White);
+    gameNameText1.setFillColor(sf::Color::Black);
+    gameNameText2.setFillColor(sf::Color::Black);
+    enterKeyPrompt.setFillColor(sf::Color::Black);
+    //center positions of rectangle and texts
+    whiteRectangle.setPosition(p_titleScreenWindow->getSize().x/8.f, p_titleScreenWindow->getSize().y/8.f);
+    gameNameText1.setPosition((p_titleScreenWindow->getSize().x - 330.f)/2, ((p_titleScreenWindow->getSize().y - 550)/2.f));
+    gameNameText2.setPosition((p_titleScreenWindow->getSize().x - 408.f)/2, ((p_titleScreenWindow->getSize().y - 550)/2.f) + (179.f+25.f));
+    enterKeyPrompt.setPosition((p_titleScreenWindow->getSize().x - 423.f)/2, ((p_titleScreenWindow->getSize().y - 550)/2.f) + (179.f+25.f) + (179.f+65.f));
+    // draw rectangle and texts
+    p_titleScreenWindow->draw(whiteRectangle);
+    p_titleScreenWindow->draw(gameNameText1);
+    p_titleScreenWindow->draw(gameNameText2);
+    p_titleScreenWindow->draw(enterKeyPrompt);
 
     // end current frame
     p_titleScreenWindow->display();
@@ -140,7 +108,8 @@ void processTitleScreenInput(sf::RenderWindow* p_titleScreenWindow, sf::Event* p
                 // 'enter' key pressed
                 if (p_titleScreenEvent->key.scancode == sf::Keyboard::Scan::Enter)
                 {
-                    p_titleScreenWindow->close();
+                    setFlag(0); // sets ENTER_START_SCREEN flag to true;
+                    std::cout << "flag 0 set" << std::endl;;
                 }
                 break;
             // don't process other types of events

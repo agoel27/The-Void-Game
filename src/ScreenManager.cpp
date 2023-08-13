@@ -1,4 +1,7 @@
+#include <iostream>
+#include "StoryBeats.h"
 #include "titleScreen.h"
+#include "startScreen.h"
 
 /*
     This script manages all the screens. Refer to Navigation Layout on README
@@ -19,11 +22,23 @@ int main()
     // run program while window is open - game loop
     while (gameWindow.isOpen())
     {
+        if (!hasFlag(0))
+        {
+            // call renderTitleScreen() func - renders title screen
+            renderTitleScreen(&gameWindow);
+            // call getTitleScreenInput() func - processes user events 
+            processTitleScreenInput(&gameWindow, &screenEvent);
+        }
+        else if (hasFlag(0))
+        {
+            // call renderStartScreen() func - renders start screen
+            renderStartScreen(&gameWindow);
+            // call getStartScreenInput() func - processes user events 
+            processStartScreenInput(&gameWindow, &screenEvent);
+        }
         
-        // call renderTitleScreen() func - renders title screen
-        renderTitleScreen(&gameWindow);
-        // call getTitleScreenInput() func - processes user events 
-        processTitleScreenInput(&gameWindow, &screenEvent);
+        
+        
     }
 
     return 0;
