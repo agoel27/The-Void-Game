@@ -17,9 +17,22 @@ void GameObject::Render(){
     //Update transforms
     _sprite.setScale(_scale);
     _sprite.setPosition(_position);
+
+    _textureRect.left = 0;
+    _textureRect.top = 0;
+    _textureRect.width = _spriteSheet.getSize().x;
+    _textureRect.height = _spriteSheet.getSize().y;
 }
 
 void GameObject::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     target.draw(_sprite);
+}
+
+void GameObject::SetTextureRect(float left, float top, float height, float width){
+    _textureRect.left = left;
+    _textureRect.top = top;
+    _textureRect.height = height;
+    _textureRect.width = width;
+    _sprite.setTextureRect(_textureRect);
 }

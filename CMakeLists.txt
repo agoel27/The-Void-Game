@@ -3,7 +3,8 @@ project(voidGame)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(voidGame src/main.cpp src/GameObject.cpp)
+add_executable(voidGame 
+src/main.cpp src/GameObject.cpp src/Interactable.cpp)
 
 include_directories(headers src /usr/include c:/SFML/include)
 
