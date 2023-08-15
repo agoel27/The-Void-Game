@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stdlib.h>     // exit, EXIT_FAILURE
 #include "titleScreen.h"
-#include "StoryBeats.h"
+#include "storyBeats.h"
 
 /*
     NOTE: 

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "StoryBeats.h"
+#include "storyBeats.h"
 #include "titleScreen.h"
 #include "startScreen.h"
 
@@ -8,7 +8,7 @@
 */
 
 // set window size
-#define WINDOW_SIZE_X 800
+#define WINDOW_SIZE_X 1200
 #define WINDOW_SIZE_Y 800
 
 int main() 

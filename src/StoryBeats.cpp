@@ -1,5 +1,5 @@
 #include <iostream>
-#include "StoryBeats.h"
+#include "storyBeats.h"
 
 /*
     Implementation of flag-related functions
