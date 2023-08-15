@@ -3,9 +3,9 @@ project(voidGame)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(voidGame src/main.cpp)
+add_executable(voidGame src/main.cpp src/GameObject.cpp)
 
-include_directories(headers /usr/include c:/SFML/include)
+include_directories(headers src /usr/include c:/SFML/include)
 
 set(SFML_ROOT c:/SFML)
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")

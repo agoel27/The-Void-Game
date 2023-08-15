@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include "GameObject.h"
 #include <stdlib.h>
 
 sf::RenderWindow window(sf::VideoMode(800, 800), "It's Working");
@@ -6,20 +7,13 @@ sf::RenderWindow window(sf::VideoMode(800, 800), "It's Working");
 //WORLD
 sf::RectangleShape world(sf::Vector2f(800, 800));
 
-//PLAYER
-sf::Sprite player;
-sf::Texture player_forward;
-
-sf::Vector2f player_position(0, 0);
+//GameObjects
+GameObject player(sf::Vector2f(0,0), sf::Vector2f(.1f, .1f), "resources/player.png");
 
 void RenderAll()
 {
-    //run render on all GameObjects
-    
-    player.setTexture(player_forward);
-    //player.setTextureRect(sf::IntRect(State*player_sheet.getSize().y,0,player_sheet.getSize().y,player_sheet.getSize().y)); //SpriteSheet
-
-    player.setPosition(player_position);
+    //Render must be called on all objects before they are drawn
+    player.Render();
 
     //DRAW ORDER
     window.draw(world);
@@ -29,23 +23,26 @@ void RenderAll()
 
 void MovementUpdate()
 {
+    sf::Vector2f moveVector(0,0);
     //MOVEMENT
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
-        player_position.x -= 0.2f;
+        moveVector.x -= 0.2f;
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
-        player_position.x += 0.2f;
+        moveVector.x += 0.2f;
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {
-        player_position.y -= 0.2f;
+        moveVector.y -= 0.2f;
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
     {
-        player_position.y += 0.2f;
+        moveVector.y += 0.2f;
     }
+    
+    player.AddPosition(moveVector.x, moveVector.y);
 }
 
 void Update()
@@ -58,10 +55,6 @@ int main() {
     sf::Event e;
 
     world.setFillColor(sf::Color(200, 230, 150));
-
-    player_forward.loadFromFile("resources/player.png");
-    player.setTexture(player_forward);
-    player.setScale(0.1f, 0.1f);
 
     while (window.isOpen())
     {
