@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "GameObject.h"
 #include "Interactable.h"
+#include "TextboxManager.h"
 #include <stdlib.h>
 #include <vector>
 
@@ -16,16 +17,21 @@ GameObject player(sf::Vector2f(0,0), sf::Vector2f(.1f, .1f), "resources/player.p
 Interactable bed(sf::Vector2f(0,0), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "A bed", Interactable::text);
 std::vector<Interactable> Interactables;
 
+//UI
+TextboxManager textBox;
+
 void RenderAll()
 {
     //Render must be called on all objects before they are drawn
     bed.Render();
     player.Render();
+    textBox.Render();
 
     //DRAW ORDER
     window.draw(world);
     window.draw(bed);
     window.draw(player);
+    window.draw(textBox);
 
     //Display
     window.display();
@@ -57,7 +63,7 @@ void MovementUpdate()
 
 void Update()
 {
-    //run update on all Instatntiated Objects
+    //run update on all Instantiated Objects
     MovementUpdate();
 }
 
@@ -67,8 +73,9 @@ int main() {
     world.setFillColor(sf::Color(200, 230, 150));
 
     bed.SetTextureRect(7 * 32, 2 * 32, 2 * 32, 32); //left offset, top offset, Y size, X size
-
     Interactables.push_back(bed);
+
+    //textBox.SetText("The Dog\nRan away from\nIt's owner.", '\n');
 
     while (window.isOpen())
     {
@@ -76,6 +83,9 @@ int main() {
         {
             if (e.type == sf::Event::Closed)
                 window.close();
+
+            if((e.type == sf::Event::KeyPressed) && (e.key.code == sf::Keyboard::Space))
+                textBox.Next();
         }
 
         Update();
