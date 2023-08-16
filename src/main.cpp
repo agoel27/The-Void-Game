@@ -15,6 +15,7 @@ GameObject player(sf::Vector2f(0,0), sf::Vector2f(.1f, .1f), "resources/player.p
 
 //Interactables
 Interactable bed(sf::Vector2f(0,0), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "A bed", Interactable::text);
+Interactable table(sf::Vector2f(160,80), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "A table", Interactable::text);
 std::vector<Interactable> Interactables;
 
 //UI
@@ -23,13 +24,15 @@ TextboxManager textBox;
 void RenderAll()
 {
     //Render must be called on all objects before they are drawn
-    bed.Render();
+    for(int i = 0; i < Interactables.size(); i++)
+        Interactables[i].Render();
     player.Render();
     textBox.Render();
 
     //DRAW ORDER
     window.draw(world);
-    window.draw(bed);
+    for(int i = 0; i < Interactables.size(); i++)
+        window.draw(Interactables[i]);
     window.draw(player);
     window.draw(textBox);
 
@@ -73,8 +76,11 @@ int main() {
     world.setFillColor(sf::Color(200, 230, 150));
 
     bed.SetTextureRect(7 * 32, 2 * 32, 2 * 32, 32); //left offset, top offset, Y size, X size
+    table.SetTextureRect(11 * 32, 2 * 32, 3 * 32, 2 * 32); //left offset, top offset, Y size, X size
     Interactables.push_back(bed);
+    Interactables.push_back(table);
 
+    //example textbox set
     //textBox.SetText("The Dog\nRan away from\nIt's owner.", '\n');
 
     while (window.isOpen())
@@ -84,8 +90,12 @@ int main() {
             if (e.type == sf::Event::Closed)
                 window.close();
 
-            if((e.type == sf::Event::KeyPressed) && (e.key.code == sf::Keyboard::Space))
-                textBox.Next();
+            if((e.type == sf::Event::KeyPressed))
+            {
+                //Key press events
+                if(e.key.code == sf::Keyboard::Space)
+                    textBox.Next();
+            }
         }
 
         Update();

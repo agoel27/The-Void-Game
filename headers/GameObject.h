@@ -12,10 +12,16 @@ class GameObject : public sf::Drawable
         sf::Texture _spriteSheet;
         sf::IntRect _textureRect;
     public:
+        sf::Vector2f GetScale(){
+            return _scale;
+        }
         void SetScale(float x, float y){
             _scale.x = x;
             _scale.y = y;
             }
+        sf::Vector2f GetPosition(){
+            return _position;
+        }
         void SetPosition(float x, float y){
             _position.x = x;
             _position.y = y;
