@@ -18,6 +18,13 @@
 TextField nameField(10, true);
 TextField beverageField(10, false);
 
+/*
+    This function renders the start screen using SFML graphics
+    Called from main() within game loop
+
+    Input:      p_startScreenWindow - pointer to RenderWindow object
+    Output:     Renders start screen
+*/
 void renderStartScreen (sf::RenderWindow* p_startScreenWindow)
 {
     // clear window with black color
@@ -78,7 +85,7 @@ void renderStartScreen (sf::RenderWindow* p_startScreenWindow)
     beveragePromptText.setFillColor(sf::Color::Black);
     nameField.setTextFieldColor(sf::Color::Black);
     beverageField.setTextFieldColor(sf::Color::Black);
-    //define positions of rectangles and texts
+    //define positions
     iconBackground.setPosition(p_startScreenWindow->getSize().x/16.f, p_startScreenWindow->getSize().y/16.f);
     whiteRectangle.setPosition(p_startScreenWindow->getSize().x/16.f, iconBackground.getPosition().y + iconBackground.getSize().y + p_startScreenWindow->getSize().y/16.f);
     gameNameText1.setPosition(iconBackground.getPosition().x + (iconBackground.getSize().x-148.f)/2.f, iconBackground.getPosition().y + (iconBackground.getSize().y-158.f)/3.f - 20.f);
@@ -88,8 +95,7 @@ void renderStartScreen (sf::RenderWindow* p_startScreenWindow)
     nameField.setTextFieldPosition(whiteRectangle.getPosition().x + (whiteRectangle.getSize().x/2.f), namePromptText.getPosition().y);
     beverageField.setTextFieldPosition(whiteRectangle.getPosition().x + (whiteRectangle.getSize().x/2.f), beveragePromptText.getPosition().y);
 
-    nameField.setTextFieldPosition(400.f,400.f);
-    // draw rectangle and texts
+    // draw to start screen
     p_startScreenWindow->draw(iconBackground);
     p_startScreenWindow->draw(whiteRectangle);
     p_startScreenWindow->draw(gameNameText1);
@@ -103,6 +109,15 @@ void renderStartScreen (sf::RenderWindow* p_startScreenWindow)
     p_startScreenWindow->display();
 }
 
+/*
+    This function processes the player input from the start screen
+    Called from main() within game loop
+
+    Input:  p_startScreenWindow - pointer to RenderWindow object
+            p_startScreenEvent  - pointer to Event object
+    Output: closes window if player closes window :)
+            handles text entered by player 
+*/
 void processStartScreenInput(sf::RenderWindow* p_startScreenWindow, sf::Event* p_startScreenEvent)
 {
     // check all window events triggered since last iteration of loop - event loop
@@ -117,22 +132,28 @@ void processStartScreenInput(sf::RenderWindow* p_startScreenWindow, sf::Event* p
                 break;
             // text entered
             case sf::Event::TextEntered:
+                // handles text entered if focus is on name text field
                 if(nameField.hasTextFieldFocus()) {
                     nameField.typedInTextField(p_startScreenEvent);
                 }
+                // handles text entered if focus is on beverage text field
                 else if(beverageField.hasTextFieldFocus()){
                     beverageField.typedInTextField(p_startScreenEvent);
                 }
                 break;
+            // mouse button pressed
             case sf::Event::MouseButtonPressed:
+                // sets focus to name text field if mouse pressed inside text field bounds
                 if(p_startScreenEvent->mouseButton.x >= nameField.getTextFieldXPosition()-3 && p_startScreenEvent->mouseButton.x <= nameField.getTextFieldXPosition()-3 + nameField.getTextFieldCharSize()*nameField.getTextFieldCharLimit() && p_startScreenEvent->mouseButton.y >= nameField.getTextFieldYPosition()+7 && p_startScreenEvent->mouseButton.y <= nameField.getTextFieldYPosition()+7 + nameField.getTextFieldCharSize()) {
                     nameField.setTextFieldFocus(true);
                     beverageField.setTextFieldFocus(false);
                 }
+                // sets focus to beverage text field if mouse pressed inside text field bounds
                 else if(p_startScreenEvent->mouseButton.x >= beverageField.getTextFieldXPosition()-3 && p_startScreenEvent->mouseButton.x <= beverageField.getTextFieldXPosition()-3 + beverageField.getTextFieldCharSize()*beverageField.getTextFieldCharLimit() && p_startScreenEvent->mouseButton.y >= beverageField.getTextFieldYPosition()+7 && p_startScreenEvent->mouseButton.y <= beverageField.getTextFieldYPosition()+7 + beverageField.getTextFieldCharSize()) {
                     nameField.setTextFieldFocus(false);
                     beverageField.setTextFieldFocus(true);
                 }
+                // removes focus from all text fields if mouse pressed outside text field bounds
                 else {
                     nameField.setTextFieldFocus(false);
                     beverageField.setTextFieldFocus(false);

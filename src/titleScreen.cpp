@@ -89,7 +89,7 @@ void renderTitleScreen (sf::RenderWindow* p_titleScreenWindow)
     Input:  p_titleScreenWindow - pointer to RenderWindow object
             p_titleScreenEvent  - pointer to Event object
     Output: closes window if player closes window :)
-            closes window if player presses 'enter' key 
+            sets story beats flag if player presses 'enter' key 
 */
 void processTitleScreenInput(sf::RenderWindow* p_titleScreenWindow, sf::Event* p_titleScreenEvent)
 {

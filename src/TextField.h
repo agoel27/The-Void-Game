@@ -1,4 +1,5 @@
 // header file for TextField.cpp
+// defines TextField class
 #ifndef TEXTFIELD_H
 #define TEXTFIELD_H
 

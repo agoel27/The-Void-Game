@@ -4,7 +4,7 @@
 #include "startScreen.h"
 
 /*
-    This script manages all the screens. Refer to Navigation Layout on README
+    Manages all the screens. Refer to Navigation Layout on README
 */
 
 // set window size

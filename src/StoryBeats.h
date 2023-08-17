@@ -5,7 +5,7 @@
 #ifndef STORY_BEATS_H
 #define STORY_BEATS_H
 
-// Define flags using preprocessor macros
+// Define flags using macros
 #define ENTER_START_SCREEN 0
 // ... define the next flag in increasing order
 // ex: #define ENTER_GAME 1
