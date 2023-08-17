@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "Interactable.h"
 #include "TextboxManager.h"
+#include "InteractionManager.h"
 #include <stdlib.h>
 #include <vector>
 
@@ -20,6 +21,7 @@ std::vector<Interactable> Interactables;
 
 //UI
 TextboxManager textBox;
+InteractionManager interactionManager(Interactables);
 
 void RenderAll()
 {
@@ -64,6 +66,19 @@ void MovementUpdate()
     player.AddPosition(moveVector.x, moveVector.y);
 }
 
+void EventUpdate(sf::Event& e)
+{
+    //run update on all Instantiated Objects
+    if((e.type == sf::Event::KeyPressed))
+    {
+        //Key press events
+        if(e.key.code == sf::Keyboard::Space)
+            textBox.Next();
+
+    }
+    interactionManager.EventUpdate(e, textBox);
+}
+
 void Update()
 {
     //run update on all Instantiated Objects
@@ -89,13 +104,8 @@ int main() {
         {
             if (e.type == sf::Event::Closed)
                 window.close();
-
-            if((e.type == sf::Event::KeyPressed))
-            {
-                //Key press events
-                if(e.key.code == sf::Keyboard::Space)
-                    textBox.Next();
-            }
+            
+            EventUpdate(e);
         }
 
         Update();

@@ -4,7 +4,8 @@ project(voidGame)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(voidGame 
-src/main.cpp src/GameObject.cpp src/Interactable.cpp src/TextboxManager.cpp)
+src/main.cpp src/GameObject.cpp src/Interactable.cpp src/TextboxManager.cpp
+src/InteractionManager.cpp)
 
 include_directories(headers src /usr/include c:/SFML/include)
 
