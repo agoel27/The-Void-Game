@@ -30,10 +30,10 @@ class GameObject : public sf::Drawable
             _position.x += x;
             _position.y += y;
             }
-        sf::FloatRect GetSpriteRect();
-        void SetTextureRect(float left, float top, float height, float width){
+        sf::FloatRect GetSpriteRect(){
             return _sprite.getGlobalBounds();
         }
+        void SetTextureRect(float left, float top, float height, float width);
         GameObject(sf::Vector2f position, sf::Vector2f scale, std::string texturePath);
         void Render();
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
