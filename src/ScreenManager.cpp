@@ -1,0 +1,37 @@
+#include <iostream>
+#include "storyBeats.h"
+#include "titleScreen.h"
+#include "startScreen.h"
+
+/*
+    Manages all the screens. Refer to Navigation Layout on README
+*/
+
+// set window size
+#define WINDOW_SIZE_X 1200
+#define WINDOW_SIZE_Y 800
+
+int main() {
+    // create window - can not be resized
+    sf::RenderWindow gameWindow(sf::VideoMode(WINDOW_SIZE_X, WINDOW_SIZE_Y), "The Void Game", sf::Style::Close);
+    gameWindow.setFramerateLimit(30);
+    // create user event for screen
+    sf::Event screenEvent;
+
+    // run program while window is open - game loop
+    while (gameWindow.isOpen()) {
+        // clears window with black color
+        gameWindow.clear(sf::Color::Black);
+
+        if (!hasFlag(0)) {
+            // call renderTitleScreen() func - renders title screen
+            renderTitleScreen(&gameWindow, &screenEvent);
+        }
+        else if (hasFlag(0)) {
+            // call renderStartScreen() func - renders start screen
+            renderStartScreen(&gameWindow, &screenEvent);
+        }        
+    }
+    return 0;
+}
+
