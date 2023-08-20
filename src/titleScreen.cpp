@@ -20,7 +20,7 @@
     Input:      p_titleScreenWindow - pointer to RenderWindow object
     Output:     Renders title screen
 */
-void renderTitleScreen (sf::RenderWindow* p_titleScreenWindow)
+void renderTitleScreen (sf::RenderWindow* p_titleScreenWindow, sf::Event* p_titleScreenEvent)
 {
     // clear window with black color
     p_titleScreenWindow->clear(sf::Color::Black);
@@ -72,6 +72,10 @@ void renderTitleScreen (sf::RenderWindow* p_titleScreenWindow)
     gameNameText1.setPosition((p_titleScreenWindow->getSize().x - 330.f)/2, ((p_titleScreenWindow->getSize().y - 550)/2.f));
     gameNameText2.setPosition((p_titleScreenWindow->getSize().x - 408.f)/2, ((p_titleScreenWindow->getSize().y - 550)/2.f) + (179.f+25.f));
     enterKeyPrompt.setPosition((p_titleScreenWindow->getSize().x - 423.f)/2, ((p_titleScreenWindow->getSize().y - 550)/2.f) + (179.f+25.f) + (179.f+65.f));
+    
+    // call getTitleScreenInput() func - processes user events 
+    processTitleScreenInput(p_titleScreenWindow, p_titleScreenEvent);
+    
     // draw rectangle and texts
     p_titleScreenWindow->draw(whiteRectangle);
     p_titleScreenWindow->draw(gameNameText1);
@@ -99,10 +103,6 @@ void processTitleScreenInput(sf::RenderWindow* p_titleScreenWindow, sf::Event* p
         // check type of event
         switch (p_titleScreenEvent->type)
         {
-            // "close requested" event: close the window
-            case sf::Event::Closed:
-                p_titleScreenWindow->close();
-                break;
             // key pressed
             case sf::Event::KeyPressed:
                 // 'enter' key pressed
@@ -111,6 +111,10 @@ void processTitleScreenInput(sf::RenderWindow* p_titleScreenWindow, sf::Event* p
                     setFlag(0); // sets ENTER_START_SCREEN flag to true;
                     std::cout << "flag 0 set" << std::endl;;
                 }
+                break;
+            // "close requested" event: close the window
+            case sf::Event::Closed:
+                p_titleScreenWindow->close();
                 break;
             // don't process other types of events
             default:

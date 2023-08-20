@@ -1,5 +1,7 @@
-// header file for TextField.cpp
-// defines TextField class
+/*
+    Defines TextField class
+    Header file for TextField.cpp
+*/
 #ifndef TEXTFIELD_H
 #define TEXTFIELD_H
 
@@ -9,29 +11,33 @@
 
 class TextField {
     public:
-        TextField();
-        TextField(int limitSize, bool isTextFieldSelected);
-        void setTextFieldFont(sf::Font*);
-        void setTextFieldCharSize(unsigned int charSize);
+        // contructor
+        TextField(int, unsigned int, bool);
+        // setters
+        void setTextFont(sf::Font&);
         void setTextFieldColor(sf::Color);
-        void setTextFieldPosition(float x, float y);
-        void drawTextField(sf::RenderWindow*);
+        void setTextColor(sf::Color);
+        void setTextFieldSize(sf::Vector2f);
+        void setTextFieldPosition(sf::Vector2f);
         void setTextFieldFocus(bool);
-        bool hasTextFieldFocus();
-        float getTextFieldXPosition();
-        float getTextFieldYPosition();
-        int getTextFieldCharSize();
-        int getTextFieldCharLimit();
-        void typedInTextField(sf::Event*);
-
+        bool getTextFieldFocus();
+        // getters
+        sf::Vector2f getTextFieldPosition();
+        sf::Vector2f getTextFieldSize();
+        unsigned int getTextCharSize();
+        int getTextCharLimit();
+        std::string getTextFieldStr();
+        // draws text field
+        void drawTextField(sf::RenderWindow&);
+        // handles text field input
+        void processTextFieldInput(sf::Event&);
 
     private:
-        sf::Text text;
-        std::ostringstream textBuffer;
-        bool hasFocus;
-        int charLimit;
-
-        std::string getTextFieldStr();
+        sf::Text _text;
+        std::ostringstream _textBuffer;
+        sf::RectangleShape _textFieldRect;
+        bool _hasFocus;
+        int _charLimit;
 };
 
 #endif

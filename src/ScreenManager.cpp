@@ -11,36 +11,27 @@
 #define WINDOW_SIZE_X 1200
 #define WINDOW_SIZE_Y 800
 
-int main() 
-{
+int main() {
     // create window - can not be resized
     sf::RenderWindow gameWindow(sf::VideoMode(WINDOW_SIZE_X, WINDOW_SIZE_Y), "The Void Game", sf::Style::Close);
-
+    gameWindow.setFramerateLimit(30);
     // create user event for screen
     sf::Event screenEvent;
 
     // run program while window is open - game loop
-    while (gameWindow.isOpen())
-    {
-        if (!hasFlag(0))
-        {
-            // call renderTitleScreen() func - renders title screen
-            renderTitleScreen(&gameWindow);
-            // call getTitleScreenInput() func - processes user events 
-            processTitleScreenInput(&gameWindow, &screenEvent);
-        }
-        else if (hasFlag(0))
-        {
-            // call renderStartScreen() func - renders start screen
-            renderStartScreen(&gameWindow);
-            // call getStartScreenInput() func - processes user events 
-            processStartScreenInput(&gameWindow, &screenEvent);
-        }
-        
-        
-        
-    }
+    while (gameWindow.isOpen()) {
+        // clears window with black color
+        gameWindow.clear(sf::Color::Black);
 
+        if (!hasFlag(0)) {
+            // call renderTitleScreen() func - renders title screen
+            renderTitleScreen(&gameWindow, &screenEvent);
+        }
+        else if (hasFlag(0)) {
+            // call renderStartScreen() func - renders start screen
+            renderStartScreen(&gameWindow, &screenEvent);
+        }        
+    }
     return 0;
 }
 

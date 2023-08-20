@@ -7,6 +7,7 @@
 
 // Define flags using macros
 #define ENTER_START_SCREEN 0
+#define ENTER_INSIDE_HOUSE 1
 // ... define the next flag in increasing order
 // ex: #define ENTER_GAME 1
 // ex: #define BEVERAGE_COLLECTED 2
