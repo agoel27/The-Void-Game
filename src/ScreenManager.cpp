@@ -1,7 +1,8 @@
 #include <iostream>
-#include "storyBeats.h"
+#include "StoryBeats.h"
 #include "titleScreen.h"
 #include "startScreen.h"
+#include "insideHouseScreen.h"
 
 /*
     Manages all the screens. Refer to Navigation Layout on README
@@ -18,19 +19,34 @@ int main() {
     // create user event for screen
     sf::Event screenEvent;
 
+    // instantiates and sets up all graphic objects
+    setupTitleScreen(gameWindow);
+    setupStartScreen(gameWindow);
+    setupInsideHouse(gameWindow);
+
+    // start game by setting ENTER_TITLE_SCREEN_FLAG
+    setFlag(0);
+
     // run program while window is open - game loop
-    while (gameWindow.isOpen()) {
+    while(gameWindow.isOpen()) {
         // clears window with black color
         gameWindow.clear(sf::Color::Black);
 
-        if (!hasFlag(0)) {
-            // call renderTitleScreen() func - renders title screen
-            renderTitleScreen(&gameWindow, &screenEvent);
+        if(hasFlag(0)) {
+            // process player input and draws title screen
+            processTitleScreenInput(gameWindow, screenEvent);
+            drawTitleScreen(gameWindow);
         }
-        else if (hasFlag(0)) {
-            // call renderStartScreen() func - renders start screen
-            renderStartScreen(&gameWindow, &screenEvent);
-        }        
+        else if(hasFlag(1)) {
+            // process player input and draws title screen
+            processStartScreenInput(gameWindow, screenEvent);
+            drawStartScreen(gameWindow);
+        }
+        else if(hasFlag(2)) {
+            // process player input and draws title screen
+            processInsideHouseInput(gameWindow, screenEvent);
+            drawInsideHouse(gameWindow);
+        }
     }
     return 0;
 }

@@ -6,12 +6,13 @@
 #define STORY_BEATS_H
 
 // Define flags using macros
-#define ENTER_START_SCREEN 0
-#define ENTER_INSIDE_HOUSE 1
+#define ENTER_TITLE_SCREEN 0
+#define ENTER_START_SCREEN 1
+#define ENTER_INSIDE_HOUSE 2
 // ... define the next flag in increasing order
-// ex: #define ENTER_GAME 1
-// ex: #define BEVERAGE_COLLECTED 2
-// ex: #define KEY_COLLECTED 3
+// ex: #define ENTER_GAME 3
+// ex: #define BEVERAGE_COLLECTED 4
+// ex: #define KEY_COLLECTED 5
 
 void setFlag(int flag);
 void clearFlag(int flag);

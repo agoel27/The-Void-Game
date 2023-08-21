@@ -4,7 +4,8 @@
 
 #include <SFML/Graphics.hpp>
 
-void renderTitleScreen (sf::RenderWindow*, sf::Event*);
-void processTitleScreenInput(sf::RenderWindow*, sf::Event*);
+void setupTitleScreen (sf::RenderWindow&);
+void processTitleScreenInput(sf::RenderWindow&, sf::Event&);
+void drawTitleScreen(sf::RenderWindow&);
 
 #endif

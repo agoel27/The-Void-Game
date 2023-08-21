@@ -1,14 +1,14 @@
 #include <iostream>
 #include <stdlib.h>     // exit, EXIT_FAILURE
 #include "startScreen.h"
-#include "storyBeats.h"
+#include "StoryBeats.h"
 #include "TextField.h"
 #include "Button.h"
 
 /*
     Implements start screen related functions
         - Renders start screen
-        - Handles mouse and keyboard player inputs from start screen
+        - Handles mouse and keyboard inputs from player
 
     NOTES:
 
@@ -18,6 +18,17 @@
         - changing the font size of any text will result in off-center position
 */
 
+// creates font objects
+sf::Font impactFont;
+sf::Font arialFont;
+// creates rectangle objects
+sf::RectangleShape iconBackground;
+sf::RectangleShape whiteBackground;
+// creates text objects
+sf::Text iconText1;
+sf::Text iconText2;
+sf::Text namePromptText;
+sf::Text beveragePromptText;
 // creates text field objects
 TextField nameField(10, 30u, true);
 TextField beverageField(10, 30u, false);
@@ -25,40 +36,21 @@ TextField beverageField(10, 30u, false);
 Button submitButton("SUBMIT", 30u);
 
 /*
-    This function renders the start screen using SFML graphics
-    Called from main() within game loop
+    This function instantiates and sets up all the start screen objects using SFML graphics
+    Called from main() before game loop
 
-    Input:      p_startScreenWindow - pointer to RenderWindow object
-    Output:     void
+    Input:      startScreenWindow - alias of RenderWindow object
 */
-void renderStartScreen (sf::RenderWindow* p_startScreenWindow, sf::Event* p_startScreenEvent)
-{
-    // // clears window with black color
-    // p_startScreenWindow->clear(sf::Color::Black);
-
-    // creates font objects
-    sf::Font impactFont;
-    sf::Font arialFont;
+void setupStartScreen (sf::RenderWindow& startScreenWindow) {
     // loads fonts from resources directory
-    if (!impactFont.loadFromFile("resources/impact.ttf"))
-    {
+    if (!impactFont.loadFromFile("resources/impact.ttf")) {
         std::cout << "ERROR: could not load the impact font from resources directory\n - Please check the note at the top of <screenName>.cpp\n";
         exit (EXIT_FAILURE);
     }
-    if (!arialFont.loadFromFile("resources/arial.ttf"))
-    {
+    if (!arialFont.loadFromFile("resources/arial.ttf")) {
         std::cout << "ERROR: could not load the arial font from resources directory\n - Please check the note at the top of <screenName>.cpp\n";
         exit (EXIT_FAILURE);
     }
-
-    // creates rectangle objects
-    sf::RectangleShape iconBackground(sf::Vector2f(p_startScreenWindow->getSize().x/4.f, p_startScreenWindow->getSize().y/4.f));
-    sf::RectangleShape whiteRectangle(sf::Vector2f((7.f*p_startScreenWindow->getSize().x)/8.f, (9.f*p_startScreenWindow->getSize().y)/16.f));
-    // creates text objects
-    sf::Text iconText1;
-    sf::Text iconText2;
-    sf::Text namePromptText;
-    sf::Text beveragePromptText;
 
     // sets text to display
     iconText1.setString("The");
@@ -77,6 +69,8 @@ void renderStartScreen (sf::RenderWindow* p_startScreenWindow, sf::Event* p_star
     iconText1.setStyle(sf::Text::Bold);
     iconText2.setStyle(sf::Text::Bold);
     // sets sizes
+    iconBackground.setSize(sf::Vector2f(startScreenWindow.getSize().x/4.f, startScreenWindow.getSize().y/4.f));
+    whiteBackground.setSize(sf::Vector2f((7.f*startScreenWindow.getSize().x)/8.f, (9.f*startScreenWindow.getSize().y)/16.f));
     iconText1.setCharacterSize(100);
     iconText2.setCharacterSize(100);
     nameField.setTextFieldSize(sf::Vector2f(400, 35));
@@ -84,7 +78,7 @@ void renderStartScreen (sf::RenderWindow* p_startScreenWindow, sf::Event* p_star
     submitButton.setButtonSize(sf::Vector2f(200.f, 70.f));
     // sets colors
     iconBackground.setFillColor(sf::Color::White);
-    whiteRectangle.setFillColor(sf::Color::White);
+    whiteBackground.setFillColor(sf::Color::White);
     iconText1.setFillColor(sf::Color::Black);
     iconText2.setFillColor(sf::Color::Black);
     namePromptText.setFillColor(sf::Color::Black);
@@ -96,88 +90,72 @@ void renderStartScreen (sf::RenderWindow* p_startScreenWindow, sf::Event* p_star
     submitButton.setButtonColor(sf::Color::Transparent);
     submitButton.setButtonTextColor(sf::Color::Black);
     submitButton.setButtonOutlineColor(sf::Color::Black);
-    //defines positions
-    iconBackground.setPosition(sf::Vector2f(p_startScreenWindow->getSize())/16.f);
-    whiteRectangle.setPosition(p_startScreenWindow->getSize().x/16.f,  (3.f*p_startScreenWindow->getSize().y)/8.f);
+    //sets positions
+    iconBackground.setPosition(sf::Vector2f(startScreenWindow.getSize())/16.f);
+    whiteBackground.setPosition(startScreenWindow.getSize().x/16.f,  (3.f*startScreenWindow.getSize().y)/8.f);
     iconText1.setOrigin(iconText1.getGlobalBounds().getSize()/2.f + iconText1.getLocalBounds().getPosition());
     iconText1.setPosition(iconBackground.getPosition().x + (iconBackground.getSize().x - iconText1.getGlobalBounds().width)/2.f + iconText1.getGlobalBounds().width/2.f, iconBackground.getPosition().y + (iconBackground.getSize().y - (iconText1.getGlobalBounds().height+iconText2.getGlobalBounds().height))/3.f + iconText1.getGlobalBounds().height/2.f);
     iconText2.setOrigin(iconText2.getGlobalBounds().getSize()/2.f + iconText2.getLocalBounds().getPosition());    
     iconText2.setPosition(iconBackground.getPosition().x + (iconBackground.getSize().x - iconText2.getGlobalBounds().width)/2.f + iconText2.getGlobalBounds().width/2.f, iconText1.getGlobalBounds().top + iconText1.getGlobalBounds().height + (iconBackground.getSize().y - (iconText1.getGlobalBounds().height+iconText2.getGlobalBounds().height))/3.f + iconText2.getGlobalBounds().height/2.f);
-    float whiteRectEmptySpaceY = whiteRectangle.getSize().y - (namePromptText.getGlobalBounds().height+beveragePromptText.getGlobalBounds().height+submitButton.getButtonSize().y);
+    float whiteRectEmptySpaceY = whiteBackground.getSize().y - (namePromptText.getGlobalBounds().height+beveragePromptText.getGlobalBounds().height+submitButton.getButtonSize().y);
     namePromptText.setOrigin(namePromptText.getGlobalBounds().getSize()/2.f + namePromptText.getLocalBounds().getPosition());
-    namePromptText.setPosition(p_startScreenWindow->getSize().x/8.f + namePromptText.getGlobalBounds().width/2.f, whiteRectangle.getPosition().y + whiteRectEmptySpaceY/4.f + namePromptText.getGlobalBounds().height/2.f);
+    namePromptText.setPosition(startScreenWindow.getSize().x/8.f + namePromptText.getGlobalBounds().width/2.f, whiteBackground.getPosition().y + whiteRectEmptySpaceY/4.f + namePromptText.getGlobalBounds().height/2.f);
     beveragePromptText.setOrigin(beveragePromptText.getGlobalBounds().getSize()/2.f + beveragePromptText.getLocalBounds().getPosition());
-    beveragePromptText.setPosition(p_startScreenWindow->getSize().x/8.f + beveragePromptText.getGlobalBounds().width/2.f, namePromptText.getGlobalBounds().top + namePromptText.getGlobalBounds().height + whiteRectEmptySpaceY/4.f + beveragePromptText.getGlobalBounds().height/2.f);
-    nameField.setTextFieldPosition(sf::Vector2f(whiteRectangle.getPosition().x + (whiteRectangle.getSize().x/2.f), namePromptText.getGlobalBounds().top));
-    beverageField.setTextFieldPosition(sf::Vector2f(whiteRectangle.getPosition().x + (whiteRectangle.getSize().x/2.f), beveragePromptText.getGlobalBounds().top));
-    submitButton.setButtonPosition(sf::Vector2f((p_startScreenWindow->getSize().x - submitButton.getButtonSize().x)/2.f, beveragePromptText.getGlobalBounds().top + beveragePromptText.getGlobalBounds().height + whiteRectEmptySpaceY/4.f));
-    
-    // calls getStartScreenInput() func - processes user events
-    processStartScreenInput(p_startScreenWindow, p_startScreenEvent);
-
-    // draws to start screen
-    p_startScreenWindow->draw(iconBackground);
-    p_startScreenWindow->draw(whiteRectangle);
-    p_startScreenWindow->draw(iconText1);
-    p_startScreenWindow->draw(iconText2);
-    p_startScreenWindow->draw(namePromptText);
-    p_startScreenWindow->draw(beveragePromptText);
-    nameField.drawTextField(*p_startScreenWindow);
-    beverageField.drawTextField(*p_startScreenWindow);
-    submitButton.drawButton(*p_startScreenWindow);
-
-    // ends current frame
-    p_startScreenWindow->display();
+    beveragePromptText.setPosition(startScreenWindow.getSize().x/8.f + beveragePromptText.getGlobalBounds().width/2.f, namePromptText.getGlobalBounds().top + namePromptText.getGlobalBounds().height + whiteRectEmptySpaceY/4.f + beveragePromptText.getGlobalBounds().height/2.f);
+    nameField.setTextFieldPosition(sf::Vector2f(whiteBackground.getPosition().x + (whiteBackground.getSize().x/2.f), namePromptText.getGlobalBounds().top));
+    beverageField.setTextFieldPosition(sf::Vector2f(whiteBackground.getPosition().x + (whiteBackground.getSize().x/2.f), beveragePromptText.getGlobalBounds().top));
+    submitButton.setButtonPosition(sf::Vector2f((startScreenWindow.getSize().x - submitButton.getButtonSize().x)/2.f, beveragePromptText.getGlobalBounds().top + beveragePromptText.getGlobalBounds().height + whiteRectEmptySpaceY/4.f));
 }
 
 /*
     This function processes the player input from the start screen
     Called from main() within game loop
 
-    Input:      p_startScreenWindow - pointer to RenderWindow object
-                p_startScreenEvent  - pointer to Event object
-    Output:     void
+    Input:  startScreenWindow - alias of RenderWindow object
+            startScreenEvent  - alias of Event object
+    Output: displays text entered in appropriate text fields
+            changes text field focus if mouse clicked
+            sets flag if player presses 'submit' key and both text fields are filled
+            closes window if player closes window :)
 */
-void processStartScreenInput(sf::RenderWindow* p_startScreenWindow, sf::Event* p_startScreenEvent)
-{
+void processStartScreenInput(sf::RenderWindow& startScreenWindow, sf::Event& startScreenEvent) {
     // checks all window events triggered since last iteration of loop - event loop
-    while (p_startScreenWindow->pollEvent(*p_startScreenEvent))
-    {
+    while (startScreenWindow.pollEvent(startScreenEvent)) {
         // checks type of event
-        switch (p_startScreenEvent->type)
-        {
+        switch (startScreenEvent.type) {
             // text entered event
             case sf::Event::TextEntered:
                 // handles text entered if focus is on name text field
                 if(nameField.getTextFieldFocus()) {
-                    nameField.processTextFieldInput(*p_startScreenEvent);
+                    nameField.processTextFieldInput(startScreenEvent);
                 }
                 // handles text entered if focus is on beverage text field
                 else if(beverageField.getTextFieldFocus()){
-                    beverageField.processTextFieldInput(*p_startScreenEvent);
+                    beverageField.processTextFieldInput(startScreenEvent);
                 }
                 break;
             // mouse button pressed event
             case sf::Event::MouseButtonPressed:
                 // sets focus to name text field if mouse pressed inside text field bounds
-                if(p_startScreenEvent->mouseButton.x >= nameField.getTextFieldPosition().x && p_startScreenEvent->mouseButton.x <= nameField.getTextFieldPosition().x + nameField.getTextFieldSize().x && p_startScreenEvent->mouseButton.y >= nameField.getTextFieldPosition().y && p_startScreenEvent->mouseButton.y <= nameField.getTextFieldPosition().y + nameField.getTextFieldSize().y) {
+                if(startScreenEvent.mouseButton.x >= nameField.getTextFieldPosition().x && startScreenEvent.mouseButton.x <= nameField.getTextFieldPosition().x + nameField.getTextFieldSize().x && startScreenEvent.mouseButton.y >= nameField.getTextFieldPosition().y && startScreenEvent.mouseButton.y <= nameField.getTextFieldPosition().y + nameField.getTextFieldSize().y) {
                     nameField.setTextFieldFocus(true);
                     beverageField.setTextFieldFocus(false);
                 }
                 // sets focus to beverage text field if mouse pressed inside text field bounds
-                else if(p_startScreenEvent->mouseButton.x >= beverageField.getTextFieldPosition().x && p_startScreenEvent->mouseButton.x <= beverageField.getTextFieldPosition().x + beverageField.getTextFieldSize().x && p_startScreenEvent->mouseButton.y >= beverageField.getTextFieldPosition().y && p_startScreenEvent->mouseButton.y <= beverageField.getTextFieldPosition().y + beverageField.getTextFieldSize().y) {
+                else if(startScreenEvent.mouseButton.x >= beverageField.getTextFieldPosition().x && startScreenEvent.mouseButton.x <= beverageField.getTextFieldPosition().x + beverageField.getTextFieldSize().x && startScreenEvent.mouseButton.y >= beverageField.getTextFieldPosition().y && startScreenEvent.mouseButton.y <= beverageField.getTextFieldPosition().y + beverageField.getTextFieldSize().y) {
                     nameField.setTextFieldFocus(false);
                     beverageField.setTextFieldFocus(true);
                 }
-                else if(p_startScreenEvent->mouseButton.x >= submitButton.getButtonPosition().x && p_startScreenEvent->mouseButton.x <= submitButton.getButtonPosition().x + submitButton.getButtonSize().x && p_startScreenEvent->mouseButton.y >= submitButton.getButtonPosition().y && p_startScreenEvent->mouseButton.y <= submitButton.getButtonPosition().y + submitButton.getButtonSize().y) {
+                else if(startScreenEvent.mouseButton.x >= submitButton.getButtonPosition().x && startScreenEvent.mouseButton.x <= submitButton.getButtonPosition().x + submitButton.getButtonSize().x && startScreenEvent.mouseButton.y >= submitButton.getButtonPosition().y && startScreenEvent.mouseButton.y <= submitButton.getButtonPosition().y + submitButton.getButtonSize().y) {
                     if(nameField.getTextFieldStr() == "" || beverageField.getTextFieldStr() == "") {
                         submitButton.setButtonOutlineColor(sf::Color::Red);
                         submitButton.setButtonTextColor(sf::Color::Red);
                     }
                     else {
-                        //submitButton.setButtonColor(sf::Color::Red);
-                        setFlag(1);
-                        std::cout << "flag 1 set" << std::endl;
+                        clearFlag(1);   // clears ENTER_START_SCREEN flag
+                        setFlag(2);     // sets ENTER_INSIDE_HOUSE flag
+                        std::cout << "flag 1 cleared" << std::endl;
+                        std::cout << "flag 2 set" << std::endl << std::endl;
                     }
                     // removes focus from all text fields
                     nameField.setTextFieldFocus(false);
@@ -191,11 +169,38 @@ void processStartScreenInput(sf::RenderWindow* p_startScreenWindow, sf::Event* p
                 break;
             // "close requested" event: close the window
             case sf::Event::Closed:
-                p_startScreenWindow->close();
+                startScreenWindow.close();
                 break;
             // don't process other types of events
             default:
                 break;
         }
     }
+}
+
+/*
+    This function draws all the graphics objects to the start screen
+    Called from main() within game loop
+
+    Input:  startScreenWindow - alias of RenderWindow object
+    Output: all objects drawn to screen
+*/
+void drawStartScreen(sf::RenderWindow& startScreenWindow) {
+
+    // clears window with black color
+    startScreenWindow.clear(sf::Color::Black);
+
+    // draws to start screen
+    startScreenWindow.draw(iconBackground);
+    startScreenWindow.draw(whiteBackground);
+    startScreenWindow.draw(iconText1);
+    startScreenWindow.draw(iconText2);
+    startScreenWindow.draw(namePromptText);
+    startScreenWindow.draw(beveragePromptText);
+    nameField.drawTextField(startScreenWindow);
+    beverageField.drawTextField(startScreenWindow);
+    submitButton.drawButton(startScreenWindow);
+
+    // ends current frame
+    startScreenWindow.display();
 }

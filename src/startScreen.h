@@ -4,7 +4,8 @@
 
 #include <SFML/Graphics.hpp>
 
-void renderStartScreen (sf::RenderWindow*, sf::Event*);
-void processStartScreenInput(sf::RenderWindow*, sf::Event*);
+void setupStartScreen(sf::RenderWindow&);
+void processStartScreenInput(sf::RenderWindow&, sf::Event&);
+void drawStartScreen(sf::RenderWindow&);
 
 #endif

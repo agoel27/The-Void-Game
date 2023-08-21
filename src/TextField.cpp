@@ -19,10 +19,14 @@ TextField::TextField(int limitSize, unsigned int charSize, bool isTextFieldSelec
     _hasFocus = isTextFieldSelected;
     if(_hasFocus) {
         _text.setString("_");
+        setTextFieldPosition(getTextFieldPosition());
     }
     else {
         _text.setString("");
+        setTextFieldPosition(getTextFieldPosition());
     }
+    // reset position since text buffer was updated
+    setTextFieldPosition(getTextFieldPosition());
     _textBuffer.str("");
 }
 
@@ -63,6 +67,8 @@ void TextField::setTextFieldFocus(bool sel) {
     else {
         _text.setString(getTextFieldStr());
     }
+    // reset position since text buffer was updated
+    setTextFieldPosition(getTextFieldPosition());
     // update value of hasFocus
     _hasFocus = sel;
 }
@@ -128,4 +134,6 @@ void TextField::processTextFieldInput(sf::Event& textEntered) {
         setTextFieldFocus(false);
         _text.setString(getTextFieldStr());
     }
+    // reset position since text buffer was updated
+    setTextFieldPosition(getTextFieldPosition());
 }
