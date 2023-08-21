@@ -3,7 +3,9 @@ project(voidGame)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(voidGame src/main.cpp)
+add_executable(voidGame src/Button.cpp src/GameObject.cpp 
+src/insideHouseScreen.cpp src/ScreenManager.cpp src/startScreen.cpp
+src/StoryBeats.cpp src/TextField.cpp src/titleScreen.cpp)
 
 include_directories(headers /usr/include c:/SFML/include)
 
