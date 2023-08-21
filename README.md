@@ -115,6 +115,12 @@ Gameobjects contain all the information necessary to render themselves to the sc
 The general flow is that main instantiates all gameobjects, interactables, and managers in the game and enters an update loop until the game is closed. 
 The interaction manager handles interactables and populates the textbox based on the interactable and story beats
 Buttons for the main menu will most likely also be handled by main. 
+
+### After Phase III
+ > The Main, now renamed Screen Manager, handled far too much.
+ > In accordance with Single Responsibility, Screen Manager now only calls the functions of other classes in its game loop. 
+  > It does not hold all the keybinds and it does not create gameobjects. There are classes responsible just for the objects on their screen. 
+  > Now Screen Manager will not be bogged down by large blocks of gameobject instantiation. 
  
  > ## Phase III
  > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on week 8 during lab time.
