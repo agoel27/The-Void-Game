@@ -36,7 +36,6 @@ void TextboxManager::SetText(std::string text, char delimiter)
     {
         _textLines.push(line);
     }
-    std::cout << _textLines.size() << " lines" << std::endl;
 }
 void TextboxManager::Next()
 {

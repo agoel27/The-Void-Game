@@ -12,11 +12,22 @@ sf::RenderWindow window(sf::VideoMode(800, 800), "It's Working");
 sf::RectangleShape world(sf::Vector2f(800, 800));
 
 //GameObjects
-GameObject player(sf::Vector2f(0,0), sf::Vector2f(.1f, .1f), "resources/player.png");
+GameObject flooring(sf::Vector2f(1 * 64, 2 * 64), sf::Vector2f(2.0f, 2.0f), "resources/room.png");
+GameObject walls(sf::Vector2f(0, 0), sf::Vector2f(2.0f, 2.0f), "resources/room.png");
+GameObject player(sf::Vector2f(2 * 64, 3 * 64), sf::Vector2f(.1f, .1f), "resources/player.png");
+std::vector<GameObject> GameObjects;
 
 //Interactables
-Interactable bed(sf::Vector2f(0,0), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "A bed", Interactable::text);
-Interactable table(sf::Vector2f(160,80), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "A table", Interactable::text);
+//Interactable key(sf::Vector2f(0,0), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "...", Interactable::text);
+Interactable bed(sf::Vector2f(6 * 64, 1 * 64 + 32), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "A bed", Interactable::text);
+Interactable table(sf::Vector2f(3 * 64, 2 * 64 + 32), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "A table", Interactable::text);
+Interactable bedside_table(sf::Vector2f(7 * 64, 1 * 64 + 32), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "...", Interactable::text);
+Interactable chair(sf::Vector2f(2 * 64 + 32, 3 * 64), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "...", Interactable::text);
+Interactable wardrobe(sf::Vector2f(2 * 64, 1 * 64 + 32), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "...", Interactable::text);
+Interactable bookshelf(sf::Vector2f(1 * 64, 4 * 64), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "...", Interactable::text);
+Interactable bookshelf2(sf::Vector2f(1 * 64, 5 * 64), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "...", Interactable::text);
+Interactable windowsill(sf::Vector2f(4 * 64, 1 * 64), sf::Vector2f(2.0f, 2.0f), "resources/room.png", "...", Interactable::text);
+Interactable door(sf::Vector2f(6 * 64, 8 * 64), sf::Vector2f(2.0f, 2.0f), "resources/room.png", "...", Interactable::text);
 std::vector<Interactable> Interactables;
 
 //UI
@@ -26,6 +37,8 @@ InteractionManager interactionManager(Interactables);
 void RenderAll()
 {
     //Render must be called on all objects before they are drawn
+    for(int i = 0; i < GameObjects.size(); i++)
+        GameObjects[i].Render();
     for(int i = 0; i < Interactables.size(); i++)
         Interactables[i].Render();
     player.Render();
@@ -33,6 +46,8 @@ void RenderAll()
 
     //DRAW ORDER
     window.draw(world);
+    for(int i = 0; i < GameObjects.size(); i++)
+        window.draw(GameObjects[i]);
     for(int i = 0; i < Interactables.size(); i++)
         window.draw(Interactables[i]);
     window.draw(player);
@@ -88,15 +103,32 @@ void Update()
 int main() {
     sf::Event e;
 
-    world.setFillColor(sf::Color(200, 230, 150));
+    world.setFillColor(sf::Color(10, 9, 9));
+
+    flooring.SetTextureRect(10 * 32, 0 * 32, 7 * 32, 8 * 32);
+    walls.SetTextureRect(0 * 32, 0 * 32, 9 * 32, 10 * 32);
+    GameObjects.push_back(flooring);
+    GameObjects.push_back(walls);
 
     bed.SetTextureRect(7 * 32, 2 * 32, 2 * 32, 32); //left offset, top offset, Y size, X size
     table.SetTextureRect(11 * 32, 2 * 32, 3 * 32, 2 * 32); //left offset, top offset, Y size, X size
+    //key
+    bedside_table.SetTextureRect(13 * 32, 0 * 32, 2 * 32, 32);
+    chair.SetTextureRect(21 * 32, 4 * 32, 2 * 32, 32);
+    wardrobe.SetTextureRect(6 * 32, 0 * 32, 2 * 32, 32);
+    bookshelf.SetTextureRect(0, 2 * 32, 2 * 32, 32);
+    bookshelf2.SetTextureRect(0, 6 * 32, 2 * 32, 32);
+    windowsill.SetTextureRect(10 * 32, 7 * 32, 32, 32);
+    door.SetTextureRect(10 * 32, 8 * 32, 2 * 32, 32);
     Interactables.push_back(bed);
     Interactables.push_back(table);
-
-    //example textbox set
-    //textBox.SetText("The Dog\nRan away from\nIt's owner.", '\n');
+    Interactables.push_back(bedside_table);
+    Interactables.push_back(chair);
+    Interactables.push_back(wardrobe);
+    Interactables.push_back(bookshelf);
+    Interactables.push_back(bookshelf2);
+    Interactables.push_back(windowsill);
+    Interactables.push_back(door);
 
     while (window.isOpen())
     {
