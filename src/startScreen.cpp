@@ -1,9 +1,9 @@
 #include <iostream>
 #include <stdlib.h>     // exit, EXIT_FAILURE
-#include "startScreen.h"
-#include "StoryBeats.h"
-#include "TextField.h"
-#include "Button.h"
+#include "../header/startScreen.h"
+#include "../header/StoryBeats.h"
+#include "../header/TextField.h"
+#include "../header/Button.h"
 
 /*
     Implements start screen related functions
@@ -146,7 +146,9 @@ void processStartScreenInput(sf::RenderWindow& startScreenWindow, sf::Event& sta
                     nameField.setTextFieldFocus(false);
                     beverageField.setTextFieldFocus(true);
                 }
+                // submit button pressed
                 else if(startScreenEvent.mouseButton.x >= submitButton.getButtonPosition().x && startScreenEvent.mouseButton.x <= submitButton.getButtonPosition().x + submitButton.getButtonSize().x && startScreenEvent.mouseButton.y >= submitButton.getButtonPosition().y && startScreenEvent.mouseButton.y <= submitButton.getButtonPosition().y + submitButton.getButtonSize().y) {
+                    // changes submit button to red to show that player has not entered name and beverage
                     if(nameField.getTextFieldStr() == "" || beverageField.getTextFieldStr() == "") {
                         submitButton.setButtonOutlineColor(sf::Color::Red);
                         submitButton.setButtonTextColor(sf::Color::Red);
@@ -154,8 +156,6 @@ void processStartScreenInput(sf::RenderWindow& startScreenWindow, sf::Event& sta
                     else {
                         clearFlag(1);   // clears ENTER_START_SCREEN flag
                         setFlag(2);     // sets ENTER_INSIDE_HOUSE flag
-                        std::cout << "flag 1 cleared" << std::endl;
-                        std::cout << "flag 2 set" << std::endl << std::endl;
                     }
                     // removes focus from all text fields
                     nameField.setTextFieldFocus(false);

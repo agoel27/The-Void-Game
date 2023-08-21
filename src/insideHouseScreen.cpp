@@ -1,7 +1,17 @@
-#include <SFML/Graphics.hpp>
 #include <stdlib.h>     // exit, EXIT_FAILURE
 #include <iostream>
-#include "insideHouseScreen.h"
+#include "../header/insideHouseScreen.h"
+
+/*
+    Implements inside house screen related functions
+        - Renders inside house screen
+        - Handles keyboard inputs from player
+
+    NOTE:
+    
+    Texture might break depending on where you compile this file from
+        - Definitely works if working directory is ../final-project-thevoidgame
+*/
 
 //WORLD
 sf::RectangleShape world;

@@ -1,8 +1,8 @@
 #include <iostream>
-#include "StoryBeats.h"
-#include "titleScreen.h"
-#include "startScreen.h"
-#include "insideHouseScreen.h"
+#include "../header/StoryBeats.h"
+#include "../header/titleScreen.h"
+#include "../header/startScreen.h"
+#include "../header/insideHouseScreen.h"
 
 /*
     Manages all the screens. Refer to Navigation Layout on README

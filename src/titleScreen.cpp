@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stdlib.h>     // exit, EXIT_FAILURE
-#include "titleScreen.h"
-#include "StoryBeats.h"
+#include "../header/titleScreen.h"
+#include "../header/StoryBeats.h"
 
 /*
     Implements title screen related functions
@@ -98,8 +98,6 @@ void processTitleScreenInput(sf::RenderWindow& titleScreenWindow, sf::Event& tit
                 {
                     clearFlag(0);   // clears ENTER_TITLE_SCREEN flag
                     setFlag(1);     // sets ENTER_START_SCREEN flag
-                    std::cout << "flag 0 cleared" << std::endl;
-                    std::cout << "flag 1 set" << std::endl << std::endl;
                 }
                 break;
             // "close requested" event: close the window

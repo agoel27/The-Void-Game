@@ -1,5 +1,5 @@
 #include <iostream>
-#include "StoryBeats.h"
+#include "../header/StoryBeats.h"
 
 /*
     Implementation of flag-related functions
@@ -19,6 +19,7 @@ void setFlag(int flag)
 {
     if (flag >= 0 && flag < sizeof(gameFlags) / sizeof(gameFlags[0])) {
         gameFlags[flag] = true;
+        std::cout << "flag " << flag << " set" << std::endl;
     }
     else {
         std::cout << "flag " << flag << " does not exist" << std::endl;
@@ -35,6 +36,7 @@ void clearFlag(int flag)
 {
     if (flag >= 0 && flag < sizeof(gameFlags) / sizeof(gameFlags[0])) {
         gameFlags[flag] = false;
+        std::cout << "flag " << flag << " cleared" << std::endl;
     }
     else {
         std::cout << "flag " << flag << " does not exist" << std::endl;
