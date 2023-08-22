@@ -1,10 +1,10 @@
-#include "TextboxManager.h"
+#include "../header/TextboxManager.h"
 #include <sstream>
 #include <iostream>
 
 TextboxManager::TextboxManager()
 {
-    _font.loadFromFile("../resources/pixelFont.ttf");
+    _font.loadFromFile("resources/pixelFont.ttf");
     _text.setFont(_font);
 
     _textbox.setSize(sf::Vector2f(800 - 2 * _boxMargin, 400 - 2 * _boxMargin));

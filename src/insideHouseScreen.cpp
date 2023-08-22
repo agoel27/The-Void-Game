@@ -100,7 +100,7 @@ void processInsideHouseInput(sf::RenderWindow& window, sf::Event& event) {
 void insideHouseEventUpdate(sf::Event& event)
 {
     //perform input-related updates
-    if((event.type == sf::Event::KeyPressed))
+    if(event.type == sf::Event::KeyPressed)
     {
         //Key press events
         if(event.key.code == sf::Keyboard::Space)

@@ -1,4 +1,4 @@
-#include "InteractionManager.h"
+#include "../header/InteractionManager.h"
 #include <iostream>
 
 InteractionManager::InteractionManager(std::vector<Interactable>& interactables)
