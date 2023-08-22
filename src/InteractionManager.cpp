@@ -5,10 +5,6 @@ InteractionManager::InteractionManager(std::vector<Interactable>& interactables)
 {
     _interactables = &interactables;
 }
-InteractionManager::~InteractionManager()
-{
-    delete _interactables;
-}
 void InteractionManager::EventUpdate(sf::Event& event, TextboxManager& textbox)
 {
     if(_interactables != nullptr && event.type == sf::Event::MouseButtonPressed)

@@ -12,7 +12,6 @@ class InteractionManager
         void Interact(Interactable& Interactable, TextboxManager& textbox);
     public:
         InteractionManager(std::vector<Interactable>& interactables);
-        ~InteractionManager();
         void EventUpdate(sf::Event& e, TextboxManager& textbox);
 
 };
