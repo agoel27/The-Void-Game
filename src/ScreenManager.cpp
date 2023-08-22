@@ -12,6 +12,8 @@
 #define WINDOW_SIZE_X 1200
 #define WINDOW_SIZE_Y 800
 
+
+
 int main() {
     // create window - can not be resized
     sf::RenderWindow gameWindow(sf::VideoMode(WINDOW_SIZE_X, WINDOW_SIZE_Y), "The Void Game", sf::Style::Close);
@@ -29,9 +31,7 @@ int main() {
 
     // run program while window is open - game loop
     while(gameWindow.isOpen()) {
-        // clears window with black color
-        gameWindow.clear(sf::Color::Black);
-
+        
         if(hasFlag(0)) {
             // process player input and draws title screen
             processTitleScreenInput(gameWindow, screenEvent);
