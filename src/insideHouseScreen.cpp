@@ -17,18 +17,18 @@
 sf::RectangleShape world(sf::Vector2f(1200, 800));
 
 //GameObjects
-GameObject flooring(sf::Vector2f(1 * 64 + 300, 2 * 64), sf::Vector2f(2.0f, 2.0f), "resources/room.png");
-GameObject walls(sf::Vector2f(0 + 300, 0), sf::Vector2f(2.0f, 2.0f), "resources/room.png");
-GameObject player(sf::Vector2f(2 * 64 + 300, 3 * 64), sf::Vector2f(.1f, .1f), "resources/player.png");
+GameObject flooring(sf::Vector2f(1 * 64 + 300, 2 * 64), sf::Vector2f(2.0f, 2.0f), "resources/room.png", false);
+GameObject walls(sf::Vector2f(0 + 300, 0), sf::Vector2f(2.0f, 2.0f), "resources/room.png", false);
+GameObject player(sf::Vector2f(2 * 64 + 300, 7 * 64), sf::Vector2f(.05f, .05f), "resources/player.png");
 std::vector<GameObject> GameObjects;
 
 //Interactables
 //Interactable key(sf::Vector2f(0,0), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "...", Interactable::text);
-Interactable bed(sf::Vector2f(6 * 64 + 300, 1 * 64 + 32), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "Feeling Sleepy?", Interactable::text);
-Interactable table(sf::Vector2f(3 * 64 + 300, 2 * 64 + 32), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "Where's the food?", Interactable::text);
-Interactable bedside_table(sf::Vector2f(7 * 64 + 300, 1 * 64 + 32), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "There's tablets in here.\nNo wait they're hydratable dinosaur sponges.", Interactable::text);
-Interactable chair(sf::Vector2f(2 * 64 + 32 + 300, 3 * 64), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "For Sitting and Stuff.", Interactable::text);
-Interactable wardrobe(sf::Vector2f(2 * 64 + 300, 1 * 64 + 32), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "The usual.", Interactable::text);
+Interactable bed(sf::Vector2f(6 * 64 + 300, 2 * 64 - 16), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "Feeling Sleepy?", Interactable::text);
+Interactable table(sf::Vector2f(3 * 64 + 300, 3 * 64 + 32), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "Where's the food?", Interactable::text);
+Interactable bedside_table(sf::Vector2f(7 * 64 + 300, 2 * 64 - 16), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "There's tablets in here.\nNo wait they're hydratable dinosaur sponges.", Interactable::text);
+Interactable wardrobe(sf::Vector2f(2 * 64 + 300, 1 * 64 + 24), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "The usual.", Interactable::text);
+Interactable chair(sf::Vector2f(2 * 64 + 32 + 300, 4 * 64), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "For Sitting and Stuff.", Interactable::text);
 Interactable bookshelf(sf::Vector2f(1 * 64 + 300, 4 * 64), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "The books have no titles, the pages are empty.", Interactable::text);
 Interactable bookshelf2(sf::Vector2f(1 * 64 + 300, 5 * 64), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "There's a box of herbs and a pop vinyl.", Interactable::text);
 Interactable windowsill(sf::Vector2f(4 * 64 + 300, 1 * 64), sf::Vector2f(2.0f, 2.0f), "resources/room.png", "Thick with Dirt?", Interactable::text);
@@ -53,21 +53,21 @@ void setupInsideHouse (sf::RenderWindow& window) {
     GameObjects.push_back(flooring);
     GameObjects.push_back(walls);
 
-    bed.SetTextureRect(7 * 32, 2 * 32, 2 * 32, 32); //left offset, top offset, Y size, X size
-    table.SetTextureRect(11 * 32, 2 * 32, 3 * 32, 2 * 32); //left offset, top offset, Y size, X size
+    bed.SetTextureRect(7 * 32, 2 * 32 + 16, 2 * 32 - 16, 32); //left offset, top offset, Y size, X size
+    table.SetTextureRect(11 * 32, 2 * 32 + 32, 2 * 32 - 8, 2 * 32); //left offset, top offset, Y size, X size
     //key
-    bedside_table.SetTextureRect(13 * 32, 0 * 32, 2 * 32, 32);
-    chair.SetTextureRect(21 * 32, 4 * 32, 2 * 32, 32);
-    wardrobe.SetTextureRect(6 * 32, 0 * 32, 2 * 32, 32);
-    bookshelf.SetTextureRect(0, 2 * 32, 2 * 32, 32);
-    bookshelf2.SetTextureRect(0, 6 * 32, 2 * 32, 32);
+    bedside_table.SetTextureRect(13 * 32, 0 * 32 + 16, 1 * 32, 32);
+    wardrobe.SetTextureRect(6 * 32, 0 * 32, 2 * 32 - 16, 32);
+    chair.SetTextureRect(21 * 32, 4 * 32 + 16, 2 * 32 - 24, 32 - 8);
+    bookshelf.SetTextureRect(0, 2 * 32 + 8, 2 * 32 - 8, 32 - 16);
+    bookshelf2.SetTextureRect(0, 6 * 32 + 8, 2 * 32 - 8, 32 - 16);
     windowsill.SetTextureRect(10 * 32, 7 * 32, 32, 32);
     door.SetTextureRect(10 * 32, 8 * 32, 2 * 32, 32);
     Interactables.push_back(bed);
     Interactables.push_back(table);
     Interactables.push_back(bedside_table);
-    Interactables.push_back(chair);
     Interactables.push_back(wardrobe);
+    Interactables.push_back(chair);
     Interactables.push_back(bookshelf);
     Interactables.push_back(bookshelf2);
     Interactables.push_back(windowsill);
@@ -147,6 +147,19 @@ void drawInsideHouse(sf::RenderWindow& window)
 }
 
 /*
+    A helper function that checks if a point is in the global bounds of a rect
+*/
+bool isInside(sf::FloatRect rect, sf::Vector2f point)
+{
+    if(point.x >= rect.left && point.x <= rect.left + rect.width
+        && point.y >= rect.top && point.y <= rect.top + rect.height)
+    {
+        return true;
+    }
+    return false;
+}
+
+/*
     This function updates the player's position dependent on the arrow key pressed
     Called from processInsideHouseInput()
 
@@ -172,6 +185,46 @@ void movementUpdate()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
     {
         moveVector.y += moveSpeed;
+    }
+    sf::FloatRect playerRect = player.GetSpriteRect();
+    playerRect.left += moveVector.x;
+    playerRect.top += moveVector.y;
+
+    //run a click comparison for all 4 corners of new player rect for each gameobject
+    for(auto iter = GameObjects.end()-1; iter != GameObjects.begin()-1; iter--)
+    {
+        if(!iter->Collides()) continue;
+
+        sf::FloatRect rect = iter->GetSpriteRect();
+        //top left
+        //bottom left
+        //top right
+        //bottom right
+        if (isInside(rect, sf::Vector2f(playerRect.left, playerRect.top))
+        || isInside(rect, sf::Vector2f(playerRect.left, playerRect.top + playerRect.height))
+        || isInside(rect, sf::Vector2f(playerRect.left + playerRect.width, playerRect.top))
+        || isInside(rect, sf::Vector2f(playerRect.left + playerRect.width, playerRect.top + playerRect.height)))
+        {
+            return;
+        }
+    }
+    //run a click comparison for all 4 corners of new player rect for each interactable
+    for(auto iter = Interactables.end()-1; iter != Interactables.begin()-1; iter--)
+    {
+        if(!iter->Collides()) continue;
+
+        sf::FloatRect rect = iter->GetSpriteRect();
+        //top left
+        //bottom left
+        //top right
+        //bottom right
+        if (isInside(rect, sf::Vector2f(playerRect.left, playerRect.top))
+        || isInside(rect, sf::Vector2f(playerRect.left, playerRect.top + playerRect.height))
+        || isInside(rect, sf::Vector2f(playerRect.left + playerRect.width, playerRect.top))
+        || isInside(rect, sf::Vector2f(playerRect.left + playerRect.width, playerRect.top + playerRect.height)))
+        {
+            return;
+        }
     }
     
     player.AddPosition(moveVector.x, moveVector.y);

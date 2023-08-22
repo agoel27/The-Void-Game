@@ -11,6 +11,7 @@ class GameObject : public sf::Drawable
         sf::Vector2f _scale;
         sf::Texture _spriteSheet;
         sf::IntRect _textureRect;
+        bool _collides;
     public:
         sf::Vector2f GetScale(){
             return _scale;
@@ -33,8 +34,12 @@ class GameObject : public sf::Drawable
         sf::FloatRect GetSpriteRect(){
             return _sprite.getGlobalBounds();
         }
+        bool Collides(){
+            return _collides;
+        }
         void SetTextureRect(float left, float top, float height, float width);
         GameObject(sf::Vector2f position, sf::Vector2f scale, std::string texturePath);
+        GameObject(sf::Vector2f position, sf::Vector2f scale, std::string texturePath, bool collides);
         void Render();
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 

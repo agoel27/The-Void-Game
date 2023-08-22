@@ -7,6 +7,17 @@ GameObject::GameObject(sf::Vector2f position, sf::Vector2f scale, std::string te
     SetPosition(position.x, position.y);
     _spriteSheet.loadFromFile(texturePath);
     _sprite.setTexture(_spriteSheet);
+    _collides = true;
+}
+
+GameObject::GameObject(sf::Vector2f position, sf::Vector2f scale, std::string texturePath, bool collides) {
+    _position = sf::Vector2f(position.x, position.y);
+    _scale = sf::Vector2f(scale.x, scale.y);
+    SetScale(scale.x, scale.y);
+    SetPosition(position.x, position.y);
+    _spriteSheet.loadFromFile(texturePath);
+    _sprite.setTexture(_spriteSheet);
+    _collides = collides;
 }
 
 void GameObject::Render(){
