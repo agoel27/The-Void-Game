@@ -1,4 +1,4 @@
-#include "GameObject.h"
+#include "../header/GameObject.h"
 
 GameObject::GameObject(sf::Vector2f position, sf::Vector2f scale, std::string texturePath) {
     _position = sf::Vector2f(position.x, position.y);
