@@ -15,7 +15,7 @@ void InteractionManager::EventUpdate(sf::Event& event, TextboxManager& textbox)
     {
         if (event.mouseButton.button == sf::Mouse::Left)
         {
-            for(auto iter = _interactables->begin(); iter != _interactables->end(); iter++)
+            for(auto iter = _interactables->end()-1; iter != _interactables->begin()-1; iter--)
             {
                 sf::FloatRect rect = iter->GetSpriteRect();
                 if(event.mouseButton.x >= rect.left && event.mouseButton.x <= rect.left + rect.width

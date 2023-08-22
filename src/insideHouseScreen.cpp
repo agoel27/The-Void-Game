@@ -24,15 +24,15 @@ std::vector<GameObject> GameObjects;
 
 //Interactables
 //Interactable key(sf::Vector2f(0,0), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "...", Interactable::text);
-Interactable bed(sf::Vector2f(6 * 64 + 300, 1 * 64 + 32), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "A bed", Interactable::text);
-Interactable table(sf::Vector2f(3 * 64 + 300, 2 * 64 + 32), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "A table", Interactable::text);
-Interactable bedside_table(sf::Vector2f(7 * 64 + 300, 1 * 64 + 32), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "...", Interactable::text);
-Interactable chair(sf::Vector2f(2 * 64 + 32 + 300, 3 * 64), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "...", Interactable::text);
-Interactable wardrobe(sf::Vector2f(2 * 64 + 300, 1 * 64 + 32), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "...", Interactable::text);
-Interactable bookshelf(sf::Vector2f(1 * 64 + 300, 4 * 64), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "...", Interactable::text);
-Interactable bookshelf2(sf::Vector2f(1 * 64 + 300, 5 * 64), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "...", Interactable::text);
-Interactable windowsill(sf::Vector2f(4 * 64 + 300, 1 * 64), sf::Vector2f(2.0f, 2.0f), "resources/room.png", "...", Interactable::text);
-Interactable door(sf::Vector2f(6 * 64 + 300, 8 * 64), sf::Vector2f(2.0f, 2.0f), "resources/room.png", "...", Interactable::text);
+Interactable bed(sf::Vector2f(6 * 64 + 300, 1 * 64 + 32), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "Feeling Sleepy?", Interactable::text);
+Interactable table(sf::Vector2f(3 * 64 + 300, 2 * 64 + 32), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "Where's the food?", Interactable::text);
+Interactable bedside_table(sf::Vector2f(7 * 64 + 300, 1 * 64 + 32), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "There's tablets in here.\nNo wait they're hydratable dinosaur sponges.", Interactable::text);
+Interactable chair(sf::Vector2f(2 * 64 + 32 + 300, 3 * 64), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "For Sitting and Stuff.", Interactable::text);
+Interactable wardrobe(sf::Vector2f(2 * 64 + 300, 1 * 64 + 32), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "The usual.", Interactable::text);
+Interactable bookshelf(sf::Vector2f(1 * 64 + 300, 4 * 64), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "The books have no titles, the pages are empty.", Interactable::text);
+Interactable bookshelf2(sf::Vector2f(1 * 64 + 300, 5 * 64), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "There's a box of herbs and a pop vinyl.", Interactable::text);
+Interactable windowsill(sf::Vector2f(4 * 64 + 300, 1 * 64), sf::Vector2f(2.0f, 2.0f), "resources/room.png", "Thick with Dirt?", Interactable::text);
+Interactable door(sf::Vector2f(6 * 64 + 300, 8 * 64), sf::Vector2f(2.0f, 2.0f), "resources/room.png", "It's locked", Interactable::text);
 std::vector<Interactable> Interactables;
 
 //UI
@@ -155,7 +155,7 @@ void drawInsideHouse(sf::RenderWindow& window)
 void movementUpdate()
 {
     sf::Vector2f moveVector(0,0);
-    float moveSpeed = 3.0f;
+    float moveSpeed = 5.0f;
     //MOVEMENT
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
