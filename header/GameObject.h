@@ -34,6 +34,9 @@ class GameObject : public sf::Drawable
         sf::FloatRect GetSpriteRect(){
             return _sprite.getGlobalBounds();
         }
+        void setCollides(bool newVal){
+            _collides = newVal;
+        }
         bool Collides(){
             return _collides;
         }

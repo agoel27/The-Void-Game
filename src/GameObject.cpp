@@ -37,6 +37,12 @@ void GameObject::Render(){
 
 void GameObject::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
+    // Debug Code, display collider bounds
+    // sf::RectangleShape rectangle;
+    // rectangle.setFillColor(sf::Color(255,255,255));
+    // rectangle.setPosition(sf::Vector2f(_sprite.getGlobalBounds().left, _sprite.getGlobalBounds().top));
+    // rectangle.setSize(sf::Vector2f(_sprite.getGlobalBounds().width, _sprite.getGlobalBounds().height));
+    // target.draw(rectangle);
     target.draw(_sprite);
 }
 

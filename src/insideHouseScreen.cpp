@@ -18,17 +18,22 @@ sf::RectangleShape world(sf::Vector2f(1200, 800));
 
 //GameObjects
 GameObject flooring(sf::Vector2f(1 * 64 + 300, 2 * 64), sf::Vector2f(2.0f, 2.0f), "resources/room.png", false);
-GameObject walls(sf::Vector2f(0 + 300, 0), sf::Vector2f(2.0f, 2.0f), "resources/room.png", false);
-GameObject player(sf::Vector2f(2 * 64 + 300, 7 * 64), sf::Vector2f(.05f, .05f), "resources/player.png");
+GameObject leftWall(sf::Vector2f(0 + 300, 0), sf::Vector2f(2.0f, 2.0f), "resources/room.png");
+GameObject rightWall(sf::Vector2f(9 * 64 + 300, 0), sf::Vector2f(2.0f, 2.0f), "resources/room.png");
+GameObject topWall(sf::Vector2f(64 + 300, 0), sf::Vector2f(2.0f, 2.0f), "resources/room.png");
+GameObject bottomLeftWall(sf::Vector2f(64 + 300, 7 * 64 + 36), sf::Vector2f(2.0f, 2.0f), "resources/room.png");
+GameObject bottomRightWall(sf::Vector2f(64 * 7 + 300, 7 * 64 + 36), sf::Vector2f(2.0f, 2.0f), "resources/room.png");
+GameObject doorFrame(sf::Vector2f(64 * 6 + 300, 7 * 64), sf::Vector2f(2.0f, 2.0f), "resources/room.png", false);
+GameObject player(sf::Vector2f(2 * 64 +  + 300, 6 * 64), sf::Vector2f(.05f, .05f), "resources/player.png");
 std::vector<GameObject> GameObjects;
 
 //Interactables
 //Interactable key(sf::Vector2f(0,0), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "...", Interactable::text);
 Interactable bed(sf::Vector2f(6 * 64 + 300, 2 * 64 - 16), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "Feeling Sleepy?", Interactable::text);
-Interactable table(sf::Vector2f(3 * 64 + 300, 3 * 64 + 32), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "Where's the food?", Interactable::text);
+Interactable table(sf::Vector2f(3 * 64 + 300, 4 * 64), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "Where's the food?", Interactable::text);
 Interactable bedside_table(sf::Vector2f(7 * 64 + 300, 2 * 64 - 16), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "There's tablets in here.\nNo wait they're hydratable dinosaur sponges.", Interactable::text);
 Interactable wardrobe(sf::Vector2f(2 * 64 + 300, 1 * 64 + 24), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "The usual.", Interactable::text);
-Interactable chair(sf::Vector2f(2 * 64 + 32 + 300, 4 * 64), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "For Sitting and Stuff.", Interactable::text);
+Interactable chair(sf::Vector2f(2 * 64 + 32 + 300, 4 * 64 + 32), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "For Sitting and Stuff.", Interactable::text);
 Interactable bookshelf(sf::Vector2f(1 * 64 + 300, 4 * 64), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "The books have no titles, the pages are empty.", Interactable::text);
 Interactable bookshelf2(sf::Vector2f(1 * 64 + 300, 5 * 64), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "There's a box of herbs and a pop vinyl.", Interactable::text);
 Interactable windowsill(sf::Vector2f(4 * 64 + 300, 1 * 64), sf::Vector2f(2.0f, 2.0f), "resources/room.png", "Thick with Dirt?", Interactable::text);
@@ -49,9 +54,19 @@ void setupInsideHouse (sf::RenderWindow& window) {
     world.setFillColor(sf::Color(10, 9, 9));
 
     flooring.SetTextureRect(10 * 32, 0 * 32, 7 * 32, 8 * 32);
-    walls.SetTextureRect(0 * 32, 0 * 32, 9 * 32, 10 * 32);
+    leftWall.SetTextureRect(0 * 32, 0 * 32, 9 * 32, 1 * 32);
+    rightWall.SetTextureRect(9 * 32, 0 * 32, 9 * 32, 1 * 32);
+    topWall.SetTextureRect(1 * 32, 0 * 32, 2 * 32, 8 * 32);
+    bottomLeftWall.SetTextureRect(1 * 32, 7 * 32 + 18, 2 * 32 - 18, 5 * 32);
+    bottomRightWall.SetTextureRect(7 * 32, 7 * 32 + 18, 2 * 32 - 18, 2 * 32);
+    doorFrame.SetTextureRect(6 * 32, 7 * 32, 1 * 32, 1 * 32);
     GameObjects.push_back(flooring);
-    GameObjects.push_back(walls);
+    GameObjects.push_back(leftWall);
+    GameObjects.push_back(rightWall);
+    GameObjects.push_back(topWall);
+    GameObjects.push_back(bottomLeftWall);
+    GameObjects.push_back(bottomRightWall);
+    GameObjects.push_back(doorFrame);
 
     bed.SetTextureRect(7 * 32, 2 * 32 + 16, 2 * 32 - 16, 32); //left offset, top offset, Y size, X size
     table.SetTextureRect(11 * 32, 2 * 32 + 32, 2 * 32 - 8, 2 * 32); //left offset, top offset, Y size, X size
