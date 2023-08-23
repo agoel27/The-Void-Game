@@ -45,6 +45,12 @@ void TextField::setTextColor(sf::Color textColor) {
     _text.setFillColor(textColor);
 }
 
+// sets text field outline color
+void TextField::setTextFieldOutlineColor(sf::Color textFieldOutlineColor) {
+    _textFieldRect.setOutlineThickness(-2.f);
+    _textFieldRect.setOutlineColor(textFieldOutlineColor);
+}
+
 // sets text field size
 void TextField::setTextFieldSize(sf::Vector2f textFieldSize) {
     _textFieldRect.setSize(textFieldSize);
@@ -104,8 +110,6 @@ std::string TextField::getTextFieldStr() {
 
 // draws text field and text
 void TextField::drawTextField(sf::RenderWindow& gameWindow) {
-    _textFieldRect.setOutlineThickness(2.f);
-    _textFieldRect.setOutlineColor(sf::Color::Black);
     gameWindow.draw(_textFieldRect);
     gameWindow.draw(_text);
 }
