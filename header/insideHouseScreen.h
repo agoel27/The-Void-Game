@@ -15,7 +15,10 @@ void processInsideHouseInput(sf::RenderWindow&, sf::Event&);
 void drawInsideHouse(sf::RenderWindow&);
 void insideHouseEventUpdate(sf::Event& e);
 void insideHouseUpdate();
-bool isInside(sf::FloatRect, sf::Vector2f);
+bool tryMoveGameObject(GameObject& obj, sf::Vector2f direction);
+bool tryPush(GameObject& obj, sf::Vector2f direction);
+bool checkCollision(GameObject& obj, sf::Vector2f direction);
+bool isInRect(sf::FloatRect, sf::Vector2f);
 void movementUpdate();
 
 
