@@ -9,6 +9,8 @@
 #define ENTER_TITLE_SCREEN 0
 #define ENTER_START_SCREEN 1
 #define ENTER_INSIDE_HOUSE 2
+#define MALE_OPTION 3
+#define FEMALE_OPTION
 // ... define the next flag in increasing order
 // ex: #define ENTER_GAME 3
 // ex: #define BEVERAGE_COLLECTED 4

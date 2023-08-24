@@ -80,8 +80,8 @@ void setupStartScreen (sf::RenderWindow& startScreenWindow) {
     nameField.setTextFieldSize(sf::Vector2f(400, 35));
     beverageField.setTextFieldSize(sf::Vector2f(400, 35));
     submitButton.setButtonSize(sf::Vector2f(200.f, 70.f));
-    maleOption.setButtonSize(sf::Vector2f(100.f, 35.f));
-    femaleOption.setButtonSize(sf::Vector2f(100.f, 35.f));
+    maleOption.setButtonSize(sf::Vector2f(150.f, 40.f));
+    femaleOption.setButtonSize(sf::Vector2f(150.f, 40.f));
     // sets colors
     iconBackground.setFillColor(sf::Color::White);
     whiteBackground.setFillColor(sf::Color::White);
@@ -119,7 +119,8 @@ void setupStartScreen (sf::RenderWindow& startScreenWindow) {
     nameField.setTextFieldPosition(sf::Vector2f(whiteBackground.getPosition().x + (whiteBackground.getSize().x/2.f), namePromptText.getGlobalBounds().top));
     beverageField.setTextFieldPosition(sf::Vector2f(whiteBackground.getPosition().x + (whiteBackground.getSize().x/2.f), beveragePromptText.getGlobalBounds().top));
     submitButton.setButtonPosition(sf::Vector2f((startScreenWindow.getSize().x - submitButton.getButtonSize().x)/2.f, beveragePromptText.getGlobalBounds().top + beveragePromptText.getGlobalBounds().height + whiteRectEmptySpaceY/4.f));
-    // maleOption.setButtonPosition(sf::Vector2f((startScreenWindow.getSize().x - maleOption.getButtonSize().x)/2.f, submitButton.getGlobalBounds().top + submitButton.getGlobalBounds().height + whiteRectEmptySpaceY/4.f));
+    maleOption.setButtonPosition(sf::Vector2f((startScreenWindow.getSize().x - maleOption.getButtonSize().x)/8.f, beveragePromptText.getGlobalBounds().top + beveragePromptText.getGlobalBounds().height + whiteRectEmptySpaceY/7.f));
+    femaleOption.setButtonPosition(sf::Vector2f((startScreenWindow.getSize().x - maleOption.getButtonSize().x)/3.5f, beveragePromptText.getGlobalBounds().top + beveragePromptText.getGlobalBounds().height + whiteRectEmptySpaceY/7.f));
 }
 
 /*
@@ -228,6 +229,7 @@ void drawStartScreen(sf::RenderWindow& startScreenWindow) {
     beverageField.drawTextField(startScreenWindow);
     submitButton.drawButton(startScreenWindow);
     maleOption.drawButton(startScreenWindow);
+    femaleOption.drawButton(startScreenWindow);
 
     // ends current frame
     startScreenWindow.display();
