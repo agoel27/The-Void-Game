@@ -17,6 +17,7 @@ class TextField {
         void setTextFont(sf::Font&);
         void setTextFieldColor(sf::Color);
         void setTextColor(sf::Color);
+        void setTextFieldOutlineColor(sf::Color);
         void setTextFieldSize(sf::Vector2f);
         void setTextFieldPosition(sf::Vector2f);
         void setTextFieldFocus(bool);

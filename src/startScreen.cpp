@@ -87,6 +87,8 @@ void setupStartScreen (sf::RenderWindow& startScreenWindow) {
     beverageField.setTextColor(sf::Color::Black);
     nameField.setTextFieldColor(sf::Color(73, 213, 245));
     beverageField.setTextFieldColor(sf::Color(73, 213, 245));
+    nameField.setTextFieldOutlineColor(sf::Color::Black);
+    beverageField.setTextFieldOutlineColor(sf::Color::Black);
     submitButton.setButtonColor(sf::Color::Transparent);
     submitButton.setButtonTextColor(sf::Color::Black);
     submitButton.setButtonOutlineColor(sf::Color::Black);
@@ -150,6 +152,18 @@ void processStartScreenInput(sf::RenderWindow& startScreenWindow, sf::Event& sta
                 else if(startScreenEvent.mouseButton.x >= submitButton.getButtonPosition().x && startScreenEvent.mouseButton.x <= submitButton.getButtonPosition().x + submitButton.getButtonSize().x && startScreenEvent.mouseButton.y >= submitButton.getButtonPosition().y && startScreenEvent.mouseButton.y <= submitButton.getButtonPosition().y + submitButton.getButtonSize().y) {
                     // changes submit button to red to show that player has not entered name and beverage
                     if(nameField.getTextFieldStr() == "" || beverageField.getTextFieldStr() == "") {
+                        if(nameField.getTextFieldStr() == "") {
+                            nameField.setTextFieldOutlineColor(sf::Color::Red);
+                        }
+                        else {
+                            nameField.setTextFieldOutlineColor(sf::Color::Black);
+                        }
+                        if(beverageField.getTextFieldStr() == "") {
+                            beverageField.setTextFieldOutlineColor(sf::Color::Red);
+                        }
+                        else {
+                            beverageField.setTextFieldOutlineColor(sf::Color::Black);
+                        }
                         submitButton.setButtonOutlineColor(sf::Color::Red);
                         submitButton.setButtonTextColor(sf::Color::Red);
                     }
