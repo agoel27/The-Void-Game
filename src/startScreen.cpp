@@ -34,6 +34,8 @@ TextField nameField(10, 30u, true);
 TextField beverageField(10, 30u, false);
 // creates button object
 Button submitButton("SUBMIT", 30u);
+Button maleOption("MALE", 30u);
+Button femaleOption("FEMALE", 30u);
 
 /*
     This function instantiates and sets up all the start screen objects using SFML graphics
@@ -65,6 +67,8 @@ void setupStartScreen (sf::RenderWindow& startScreenWindow) {
     nameField.setTextFont(arialFont);
     beverageField.setTextFont(arialFont);
     submitButton.setButtonTextFont(arialFont);
+    maleOption.setButtonTextFont(arialFont);
+    femaleOption.setButtonTextFont(arialFont);
     // sets font styles
     iconText1.setStyle(sf::Text::Bold);
     iconText2.setStyle(sf::Text::Bold);
@@ -76,6 +80,8 @@ void setupStartScreen (sf::RenderWindow& startScreenWindow) {
     nameField.setTextFieldSize(sf::Vector2f(400, 35));
     beverageField.setTextFieldSize(sf::Vector2f(400, 35));
     submitButton.setButtonSize(sf::Vector2f(200.f, 70.f));
+    maleOption.setButtonSize(sf::Vector2f(100.f, 35.f));
+    femaleOption.setButtonSize(sf::Vector2f(100.f, 35.f));
     // sets colors
     iconBackground.setFillColor(sf::Color::White);
     whiteBackground.setFillColor(sf::Color::White);
@@ -92,6 +98,12 @@ void setupStartScreen (sf::RenderWindow& startScreenWindow) {
     submitButton.setButtonColor(sf::Color::Transparent);
     submitButton.setButtonTextColor(sf::Color::Black);
     submitButton.setButtonOutlineColor(sf::Color::Black);
+    maleOption.setButtonColor(sf::Color::Transparent);
+    maleOption.setButtonTextColor(sf::Color::Black);
+    maleOption.setButtonOutlineColor(sf::Black);
+    femaleOption.setButtonColor(sf::Color::Transparent);
+    femaleOption.setButtonTextColor(sf::Color::Black);
+    femaleOption.setButtonOutlineColor(sf::Black);
     //sets positions
     iconBackground.setPosition(sf::Vector2f(startScreenWindow.getSize())/16.f);
     whiteBackground.setPosition(startScreenWindow.getSize().x/16.f,  (3.f*startScreenWindow.getSize().y)/8.f);
