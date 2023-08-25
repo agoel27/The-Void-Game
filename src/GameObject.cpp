@@ -61,10 +61,10 @@ void GameObject::Render(){
 void GameObject::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     // Debug Code, display collider bounds
-    sf::RectangleShape rectangle;
-    rectangle.setFillColor(sf::Color(255,255,255));
-    rectangle.setPosition(sf::Vector2f(GetCollisionRect().left, GetCollisionRect().top));
-    rectangle.setSize(sf::Vector2f(GetCollisionRect().width, GetCollisionRect().height));
-    target.draw(rectangle);
+    //sf::RectangleShape rectangle;
+    //rectangle.setFillColor(sf::Color(255,255,255));
+    //rectangle.setPosition(sf::Vector2f(GetCollisionRect().left, GetCollisionRect().top));
+    //rectangle.setSize(sf::Vector2f(GetCollisionRect().width, GetCollisionRect().height));
+    //target.draw(rectangle);
     target.draw(_sprite);
 }

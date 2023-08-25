@@ -28,7 +28,7 @@ GameObject player(sf::Vector2f(2 * 64 +  + 300, 6 * 64), sf::Vector2f(.05f, .05f
 std::vector<GameObject> GameObjects;
 
 //Interactables
-//Interactable key(sf::Vector2f(0,0), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "...", Interactable::text);
+Interactable key(sf::Vector2f(6 * 64 + 16 + 300, 2 * 64), sf::Vector2f(1.0f, 1.0f), "resources/key.png", "There it is!", Interactable::text, false, false);
 Interactable bed(sf::Vector2f(6 * 64 + 300, 2 * 64 - 16), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "Feeling Sleepy?", Interactable::text, true, true);
 Interactable table(sf::Vector2f(3 * 64 + 300, 4 * 64), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "Where's the food?", Interactable::text);
 Interactable bedside_table(sf::Vector2f(7 * 64 + 300, 2 * 64 - 16), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "There's tablets in here.\nNo wait they're hydratable dinosaur sponges.", Interactable::text);
@@ -94,6 +94,7 @@ void setupInsideHouse (sf::RenderWindow& window) {
 
 
 
+    Interactables.push_back(key);
     Interactables.push_back(windowsill);
     Interactables.push_back(wardrobe);
     Interactables.push_back(bed);
@@ -120,6 +121,9 @@ void processInsideHouseInput(sf::RenderWindow& window, sf::Event& event) {
         // checks type of event
         if (event.type == sf::Event::Closed)
             window.close();
+        if (event.type == sf::Event::KeyPressed)
+            if (event.key.code == sf::Keyboard::Escape)
+                window.close();
 
         insideHouseEventUpdate(event);
     }
@@ -134,7 +138,7 @@ void insideHouseEventUpdate(sf::Event& event)
     if(event.type == sf::Event::KeyPressed)
     {
         //Key press events
-        if(event.key.code == sf::Keyboard::Space)
+        if(event.key.code == sf::Keyboard::Space || event.key.code == sf::Keyboard::Enter)
             textBox.Next();
 
     }

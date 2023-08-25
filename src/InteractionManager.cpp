@@ -17,7 +17,6 @@ void InteractionManager::EventUpdate(sf::Event& event, TextboxManager& textbox)
                 if(event.mouseButton.x >= rect.left && event.mouseButton.x <= rect.left + rect.width
                 && event.mouseButton.y >= rect.top && event.mouseButton.y <= rect.top + rect.height)
                 {
-                    std::cout << "Interacting with " << iter->GetDescription() << std::endl;
                     Interact(*iter, textbox);
 
                     return;
