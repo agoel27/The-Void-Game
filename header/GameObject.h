@@ -35,6 +35,7 @@ class GameObject : public sf::Drawable
         }
         void SetTextureRect(float left, float top, float height, float width);
         GameObject(sf::Vector2f position, sf::Vector2f scale, std::string texturePath);
+        GameObject();
         void Render();
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 

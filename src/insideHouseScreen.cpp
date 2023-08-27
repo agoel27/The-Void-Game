@@ -20,17 +20,9 @@ sf::RectangleShape world(sf::Vector2f(1200, 800));
 //GameObjects
 GameObject flooring(sf::Vector2f(1 * 64 + 300, 2 * 64), sf::Vector2f(2.0f, 2.0f), "resources/room.png");
 GameObject walls(sf::Vector2f(0 + 300, 0), sf::Vector2f(2.0f, 2.0f), "resources/room.png");
-//  // Set male spritesheet
-// if (hasFlag(3)) {
-//     GameObject player(sf::Vector2f(2 * 64 + 300, 3 * 64), sf::Vector2f(4,4), "resources/M_05.png");
-// }
-// // Set female spritesheet
-// if (hasFlag(4)) {
-//     GameObject player(sf::Vector2f(2 * 64 + 300, 3 * 64), sf::Vector2f(4,4), "resources/F_07.png");
-// }
-//GameObject player(sf::Vector2f(2 * 64 + 300, 3 * 64), sf::Vector2f(4,4), "resources/M_05.png");
-GameObject player(sf::Vector2f(2 * 64 + 300, 3 * 64), sf::Vector2f(4,4), "resources/F_08.png");
-// GameObject player*;
+GameObject player_m(sf::Vector2f(2 * 64 + 300, 3 * 64), sf::Vector2f(4,4), "resources/M_05.png");
+GameObject player_f(sf::Vector2f(2 * 64 + 300, 3 * 64), sf::Vector2f(4,4), "resources/F_08.png");
+GameObject player;
 std::vector<GameObject> GameObjects;
 
 //Interactables
@@ -92,7 +84,8 @@ void setupInsideHouse (sf::RenderWindow& window) {
     //    player.SetTextureRect(sf::Vector2f(2 * 64 + 300, 3 * 64), sf::Vector2f(4,4), "resources/F_08.png");
     // }
 
-    player.SetTextureRect(0,0,17,17);
+    player_m.SetTextureRect(0,0,17,17);
+    player_f.SetTextureRect(0,0,17,17);
 }
 
 /*
@@ -134,7 +127,7 @@ void insideHouseEventUpdate(sf::Event& event)
 void insideHouseUpdate()
 {
     // update player movement
-    movementUpdate();
+    // movementUpdate();
 }
 
 /*
@@ -151,7 +144,14 @@ void drawInsideHouse(sf::RenderWindow& window)
         GameObjects[i].Render();
     for(int i = 0; i < Interactables.size(); i++)
         Interactables[i].Render();
-    player.Render();
+    
+    if (hasFlag(3)) {
+        player_m.Render();
+    }
+    else if (hasFlag(4)) {
+        player_f.Render();
+    }
+    // player.Render();
     textBox.Render();
 
     //DRAW ORDER
@@ -160,7 +160,13 @@ void drawInsideHouse(sf::RenderWindow& window)
         window.draw(GameObjects[i]);
     for(int i = 0; i < Interactables.size(); i++)
         window.draw(Interactables[i]);
-    window.draw(player);
+    if (hasFlag(3)) {
+        window.draw(player_m);
+    }
+    else if (hasFlag(4)) {
+        window.draw(player_f);
+    }
+    //window.draw(player);
     window.draw(textBox);
 
     //Display
