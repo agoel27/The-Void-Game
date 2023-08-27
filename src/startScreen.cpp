@@ -150,27 +150,7 @@ void processStartScreenInput(sf::RenderWindow& startScreenWindow, sf::Event& sta
                 }
                 // submit button pressed
                 else if(startScreenEvent.mouseButton.x >= submitButton.getButtonPosition().x && startScreenEvent.mouseButton.x <= submitButton.getButtonPosition().x + submitButton.getButtonSize().x && startScreenEvent.mouseButton.y >= submitButton.getButtonPosition().y && startScreenEvent.mouseButton.y <= submitButton.getButtonPosition().y + submitButton.getButtonSize().y) {
-                    // changes submit button to red to show that player has not entered name and beverage
-                    if(nameField.getTextFieldStr() == "" || beverageField.getTextFieldStr() == "") {
-                        if(nameField.getTextFieldStr() == "") {
-                            nameField.setTextFieldOutlineColor(sf::Color::Red);
-                        }
-                        else {
-                            nameField.setTextFieldOutlineColor(sf::Color::Black);
-                        }
-                        if(beverageField.getTextFieldStr() == "") {
-                            beverageField.setTextFieldOutlineColor(sf::Color::Red);
-                        }
-                        else {
-                            beverageField.setTextFieldOutlineColor(sf::Color::Black);
-                        }
-                        submitButton.setButtonOutlineColor(sf::Color::Red);
-                        submitButton.setButtonTextColor(sf::Color::Red);
-                    }
-                    else {
-                        clearFlag(1);   // clears ENTER_START_SCREEN flag
-                        setFlag(2);     // sets ENTER_INSIDE_HOUSE flag
-                    }
+                    pressSubmit();
                     // removes focus from all text fields
                     nameField.setTextFieldFocus(false);
                     beverageField.setTextFieldFocus(false);
@@ -179,6 +159,27 @@ void processStartScreenInput(sf::RenderWindow& startScreenWindow, sf::Event& sta
                 else {
                     nameField.setTextFieldFocus(false);
                     beverageField.setTextFieldFocus(false);
+                }
+                break;
+            //A keyboard button press
+            case sf::Event::KeyPressed:
+                if(startScreenEvent.key.code == sf::Keyboard::Enter)
+                {
+                    if(nameField.getTextFieldFocus()) {
+                        nameField.setTextFieldFocus(false);
+                        beverageField.setTextFieldFocus(true);
+                    }
+                    // handles text entered if focus is on beverage text field
+                    else if(beverageField.getTextFieldFocus()){
+                        beverageField.setTextFieldFocus(false);
+                        //press submit button
+                        pressSubmit();
+                    }
+                    else
+                    {
+                        //press submit button
+                        pressSubmit();
+                    }
                 }
                 break;
             // "close requested" event: close the window
@@ -217,4 +218,29 @@ void drawStartScreen(sf::RenderWindow& startScreenWindow) {
 
     // ends current frame
     startScreenWindow.display();
+}
+
+void pressSubmit()
+{
+    // changes submit button to red to show that player has not entered name and beverage
+    if(nameField.getTextFieldStr() == "" || beverageField.getTextFieldStr() == "") {
+        if(nameField.getTextFieldStr() == "") {
+            nameField.setTextFieldOutlineColor(sf::Color::Red);
+        }
+        else {
+            nameField.setTextFieldOutlineColor(sf::Color::Black);
+        }
+        if(beverageField.getTextFieldStr() == "") {
+            beverageField.setTextFieldOutlineColor(sf::Color::Red);
+        }
+        else {
+            beverageField.setTextFieldOutlineColor(sf::Color::Black);
+        }
+        submitButton.setButtonOutlineColor(sf::Color::Red);
+        submitButton.setButtonTextColor(sf::Color::Red);
+    }
+    else {
+        clearFlag(1);   // clears ENTER_START_SCREEN flag
+        setFlag(2);     // sets ENTER_INSIDE_HOUSE flag
+    }
 }
