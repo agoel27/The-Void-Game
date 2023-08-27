@@ -127,7 +127,7 @@ void insideHouseEventUpdate(sf::Event& event)
 void insideHouseUpdate()
 {
     // update player movement
-    // movementUpdate();
+    movementUpdate();
 }
 
 /*
@@ -181,40 +181,74 @@ void drawInsideHouse(sf::RenderWindow& window)
 */
 void movementUpdate()
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) 
+    if (hasFlag(3)) 
     {
-        int xTexture = 0;
-        xTexture = (int)player.GetPosition().y / 25 % 3;
-        xTexture *= 17;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+            int xTexture = 0;
+            xTexture = (int)player_m.GetPosition().y / 25 % 3;
+            xTexture *= 17;
 
-        player.SetTextureRect(32,xTexture,17,17);
-        player.AddPosition(0,-5);
+            player_m.SetTextureRect(32,xTexture,17,17);
+            player_m.AddPosition(0,-5);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+            int xTexture = 0;
+            xTexture = (int)player_m.GetPosition().y / 25 % 3;
+            xTexture *= 17;
+
+            player_m.SetTextureRect(0,xTexture,17,17);
+            player_m.AddPosition(0,+5);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+            int yTexture = 0;
+            yTexture = (int)player_m.GetPosition().x / 25 % 3;
+            yTexture *= 17;
+
+            player_m.SetTextureRect(48,yTexture,17,17);
+            player_m.AddPosition(-5,0);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+            int yTexture = 0;
+            yTexture = (int)player_m.GetPosition().x / 25 % 3;
+            yTexture *= 17;
+
+            player_m.SetTextureRect(16,yTexture,17,17);
+            player_m.AddPosition(+5,0);
+        }
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) 
+    if (hasFlag(4)) 
     {
-        int xTexture = 0;
-        xTexture = (int)player.GetPosition().y / 25 % 3;
-        xTexture *= 17;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+            int xTexture = 0;
+            xTexture = (int)player_f.GetPosition().y / 25 % 3;
+            xTexture *= 17;
 
-        player.SetTextureRect(0,xTexture,17,17);
-        player.AddPosition(0,+5);
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) 
-    {
-        int yTexture = 0;
-        yTexture = (int)player.GetPosition().x / 25 % 3;
-        yTexture *= 17;
+            player_f.SetTextureRect(32,xTexture,17,17);
+            player_f.AddPosition(0,-5);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+            int xTexture = 0;
+            xTexture = (int)player_f.GetPosition().y / 25 % 3;
+            xTexture *= 17;
 
-        player.SetTextureRect(48,yTexture,17,17);
-        player.AddPosition(-5,0);
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) 
-    {
-        int yTexture = 0;
-        yTexture = (int)player.GetPosition().x / 25 % 3;
-        yTexture *= 17;
+            player_f.SetTextureRect(0,xTexture,17,17);
+            player_f.AddPosition(0,+5);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+            int yTexture = 0;
+            yTexture = (int)player_f.GetPosition().x / 25 % 3;
+            yTexture *= 17;
 
-        player.SetTextureRect(16,yTexture,17,17);
-        player.AddPosition(+5,0);
+            player_f.SetTextureRect(48,yTexture,17,17);
+            player_f.AddPosition(-5,0);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+            int yTexture = 0;
+            yTexture = (int)player_f.GetPosition().x / 25 % 3;
+            yTexture *= 17;
+
+            player_f.SetTextureRect(16,yTexture,17,17);
+            player_f.AddPosition(+5,0);
+        }
     }
 }
