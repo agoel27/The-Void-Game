@@ -1,6 +1,7 @@
 #include <stdlib.h>     // exit, EXIT_FAILURE
 #include <iostream>
 #include "../header/insideHouseScreen.h"
+#include "../header/StoryBeats.h"
 
 /*
     Implements inside house screen related functions
@@ -19,8 +20,17 @@ sf::RectangleShape world(sf::Vector2f(1200, 800));
 //GameObjects
 GameObject flooring(sf::Vector2f(1 * 64 + 300, 2 * 64), sf::Vector2f(2.0f, 2.0f), "resources/room.png");
 GameObject walls(sf::Vector2f(0 + 300, 0), sf::Vector2f(2.0f, 2.0f), "resources/room.png");
-// GameObject player(sf::Vector2f(2 * 64 + 300, 3 * 64), sf::Vector2f(.1f, .1f), "resources/player.png");
-GameObject player(sf::Vector2f(2 * 64 + 300, 3 * 64), sf::Vector2f(4,4), "resources/M_05.png");
+//  // Set male spritesheet
+// if (hasFlag(3)) {
+//     GameObject player(sf::Vector2f(2 * 64 + 300, 3 * 64), sf::Vector2f(4,4), "resources/M_05.png");
+// }
+// // Set female spritesheet
+// if (hasFlag(4)) {
+//     GameObject player(sf::Vector2f(2 * 64 + 300, 3 * 64), sf::Vector2f(4,4), "resources/F_07.png");
+// }
+//GameObject player(sf::Vector2f(2 * 64 + 300, 3 * 64), sf::Vector2f(4,4), "resources/M_05.png");
+GameObject player(sf::Vector2f(2 * 64 + 300, 3 * 64), sf::Vector2f(4,4), "resources/F_08.png");
+// GameObject player*;
 std::vector<GameObject> GameObjects;
 
 //Interactables
@@ -73,6 +83,14 @@ void setupInsideHouse (sf::RenderWindow& window) {
     Interactables.push_back(bookshelf2);
     Interactables.push_back(windowsill);
     Interactables.push_back(door);
+
+    // check flags for sprite
+    // if (hasFlag(3)) {
+    //     player.SetTextureRect(sf::Vector2f(2 * 64 + 300, 3 * 64), sf::Vector2f(4,4), "resources/M_05.png");
+    // }
+    // if (hasFlag(4)) {
+    //    player.SetTextureRect(sf::Vector2f(2 * 64 + 300, 3 * 64), sf::Vector2f(4,4), "resources/F_08.png");
+    // }
 
     player.SetTextureRect(0,0,17,17);
 }
