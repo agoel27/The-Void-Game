@@ -1,6 +1,7 @@
 #include <stdlib.h>     // exit, EXIT_FAILURE
 #include <iostream>
 #include "../header/insideHouseScreen.h"
+#include "../header/StoryBeats.h"
 
 /*
     Implements inside house screen related functions
@@ -17,6 +18,8 @@
 sf::RectangleShape world(sf::Vector2f(1200, 800));
 
 //GameObjects
+GameObject player_m(sf::Vector2f(2 * 64 + 300, 3 * 64), sf::Vector2f(3,3), "resources/M_05.png");
+GameObject player_f(sf::Vector2f(2 * 64 + 300, 3 * 64), sf::Vector2f(3,3), "resources/F_08.png");
 GameObject flooring(sf::Vector2f(1 * 64 + 300, 2 * 64), sf::Vector2f(2.0f, 2.0f), "resources/room.png", false, false);
 GameObject leftWall(sf::Vector2f(0 + 300, 0), sf::Vector2f(2.0f, 2.0f), "resources/room.png");
 GameObject rightWall(sf::Vector2f(9 * 64 + 300, 0), sf::Vector2f(2.0f, 2.0f), "resources/room.png");
@@ -24,7 +27,6 @@ GameObject topWall(sf::Vector2f(64 + 300, 0), sf::Vector2f(2.0f, 2.0f), "resourc
 GameObject bottomLeftWall(sf::Vector2f(64 + 300, 7 * 64 + 36), sf::Vector2f(2.0f, 2.0f), "resources/room.png");
 GameObject bottomRightWall(sf::Vector2f(64 * 7 + 300, 7 * 64 + 36), sf::Vector2f(2.0f, 2.0f), "resources/room.png");
 GameObject doorFrame(sf::Vector2f(64 * 6 + 300, 7 * 64), sf::Vector2f(2.0f, 2.0f), "resources/room.png", false, false);
-GameObject player(sf::Vector2f(2 * 64 + 300, 3 * 64), sf::Vector2f(3,3), "resources/M_05.png");
 std::vector<GameObject> GameObjects;
 
 //Interactables
@@ -105,7 +107,8 @@ void setupInsideHouse (sf::RenderWindow& window) {
     Interactables.push_back(bookshelf2);
     Interactables.push_back(door);
 
-    player.SetTextureRect(0,0,17,17);
+    player_m.SetTextureRect(0,0,17,17);
+    player_f.SetTextureRect(0,0,17,17);
 }
 
 /*
@@ -167,7 +170,14 @@ void drawInsideHouse(sf::RenderWindow& window)
         GameObjects[i].Render();
     for(int i = 0; i < Interactables.size(); i++)
         Interactables[i].Render();
-    player.Render();
+    
+    if (hasFlag(3)) {
+        player_m.Render();
+    }
+    else if (hasFlag(4)) {
+        player_f.Render();
+    }
+    // player.Render();
     textBox.Render();
 
     //DRAW ORDER
@@ -176,7 +186,13 @@ void drawInsideHouse(sf::RenderWindow& window)
         window.draw(GameObjects[i]);
     for(int i = 0; i < Interactables.size(); i++)
         window.draw(Interactables[i]);
-    window.draw(player);
+    if (hasFlag(3)) {
+        window.draw(player_m);
+    }
+    else if (hasFlag(4)) {
+        window.draw(player_f);
+    }
+    //window.draw(player);
     window.draw(textBox);
 
     //Display
@@ -193,44 +209,84 @@ void movementUpdate()
 {
     sf::Vector2f moveVector(0,0);
     float moveSpeed = 5.0f;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) 
+  
+    if (hasFlag(3)) 
     {
-        int xTexture = 0;
-        xTexture = (int)player.GetPosition().y / 25 % 3;
-        xTexture *= 17;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+            int xTexture = 0;
+            xTexture = (int)player_m.GetPosition().y / 25 % 3;
+            xTexture *= 17;
 
-        player.SetTextureRect(32,xTexture,17,17);
-        moveVector.y -= moveSpeed;
+            player_m.SetTextureRect(32,xTexture,17,17);
+            moveVector.y -= moveSpeed;
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+            int xTexture = 0;
+            xTexture = (int)player_m.GetPosition().y / 25 % 3;
+            xTexture *= 17;
+
+            player_m.SetTextureRect(0,xTexture,17,17);
+            moveVector.y += moveSpeed;
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+            int yTexture = 0;
+            yTexture = (int)player_m.GetPosition().x / 25 % 3;
+            yTexture *= 17;
+
+            player_m.SetTextureRect(48,yTexture,17,17);
+            moveVector.x -= moveSpeed;
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+            int yTexture = 0;
+            yTexture = (int)player_m.GetPosition().x / 25 % 3;
+            yTexture *= 17;
+
+            player_m.SetTextureRect(16,yTexture,17,17);
+            moveVector.x += moveSpeed;
+        }
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) 
+    else if (hasFlag(4)) 
     {
-        int xTexture = 0;
-        xTexture = (int)player.GetPosition().y / 25 % 3;
-        xTexture *= 17;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+            int xTexture = 0;
+            xTexture = (int)player_f.GetPosition().y / 25 % 3;
+            xTexture *= 17;
 
-        player.SetTextureRect(0,xTexture,17,17);
-        moveVector.y += moveSpeed;
+            player_f.SetTextureRect(32,xTexture,17,17);
+            moveVector.y -= moveSpeed;
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+            int xTexture = 0;
+            xTexture = (int)player_f.GetPosition().y / 25 % 3;
+            xTexture *= 17;
+
+            player_f.SetTextureRect(0,xTexture,17,17);
+            moveVector.y += moveSpeed;
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+            int yTexture = 0;
+            yTexture = (int)player_f.GetPosition().x / 25 % 3;
+            yTexture *= 17;
+
+            player_f.SetTextureRect(48,yTexture,17,17);
+            moveVector.x -= moveSpeed;
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+            int yTexture = 0;
+            yTexture = (int)player_f.GetPosition().x / 25 % 3;
+            yTexture *= 17;
+
+            player_f.SetTextureRect(16,yTexture,17,17);
+            moveVector.x += moveSpeed;
+        }
+
+    if (hasFlag(3)) {
+        tryMoveObject(player_m, moveVector);
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) 
-    {
-        int yTexture = 0;
-        yTexture = (int)player.GetPosition().x / 25 % 3;
-        yTexture *= 17;
-
-        player.SetTextureRect(48,yTexture,17,17);
-        moveVector.x -= moveSpeed;
+    else if (hasFlag(4)) {
+        tryMoveObject(player_f, moveVector);
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) 
-    {
-        int yTexture = 0;
-        yTexture = (int)player.GetPosition().x / 25 % 3;
-        yTexture *= 17;
-
-        player.SetTextureRect(16,yTexture,17,17);
-        moveVector.x += moveSpeed;
-    }
-
-    tryMoveGameObject(player, moveVector);
+//     tryMoveGameObject(player, moveVector);
 }
 
 /*

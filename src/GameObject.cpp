@@ -1,5 +1,7 @@
 #include "../header/GameObject.h"
 
+GameObject::GameObject() {};
+
 GameObject::GameObject(sf::Vector2f position, sf::Vector2f scale, std::string texturePath) {
     _position = sf::Vector2f(position.x, position.y);
     _scale = sf::Vector2f(scale.x, scale.y);

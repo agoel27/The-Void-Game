@@ -34,6 +34,8 @@ TextField nameField(10, 30u, true);
 TextField beverageField(10, 30u, false);
 // creates button object
 Button submitButton("SUBMIT", 30u);
+Button maleButton("MALE", 30u);
+Button femaleButton("FEMALE", 30u);
 
 /*
     This function instantiates and sets up all the start screen objects using SFML graphics
@@ -65,6 +67,8 @@ void setupStartScreen (sf::RenderWindow& startScreenWindow) {
     nameField.setTextFont(arialFont);
     beverageField.setTextFont(arialFont);
     submitButton.setButtonTextFont(arialFont);
+    maleButton.setButtonTextFont(arialFont);
+    femaleButton.setButtonTextFont(arialFont);
     // sets font styles
     iconText1.setStyle(sf::Text::Bold);
     iconText2.setStyle(sf::Text::Bold);
@@ -75,7 +79,9 @@ void setupStartScreen (sf::RenderWindow& startScreenWindow) {
     iconText2.setCharacterSize(100);
     nameField.setTextFieldSize(sf::Vector2f(400, 35));
     beverageField.setTextFieldSize(sf::Vector2f(400, 35));
-    submitButton.setButtonSize(sf::Vector2f(200.f, 70.f));
+    submitButton.setButtonSize(sf::Vector2f(175.f, 60.f));
+    maleButton.setButtonSize(sf::Vector2f(150.f, 40.f));
+    femaleButton.setButtonSize(sf::Vector2f(150.f, 40.f));
     // sets colors
     iconBackground.setFillColor(sf::Color::White);
     whiteBackground.setFillColor(sf::Color::White);
@@ -92,6 +98,12 @@ void setupStartScreen (sf::RenderWindow& startScreenWindow) {
     submitButton.setButtonColor(sf::Color::Transparent);
     submitButton.setButtonTextColor(sf::Color::Black);
     submitButton.setButtonOutlineColor(sf::Color::Black);
+    maleButton.setButtonColor(sf::Color::Transparent);
+    maleButton.setButtonTextColor(sf::Color::Black);
+    maleButton.setButtonOutlineColor(sf::Color::Black);
+    femaleButton.setButtonColor(sf::Color::Transparent);
+    femaleButton.setButtonTextColor(sf::Color::Black);
+    femaleButton.setButtonOutlineColor(sf::Color::Black);
     //sets positions
     iconBackground.setPosition(sf::Vector2f(startScreenWindow.getSize())/16.f);
     whiteBackground.setPosition(startScreenWindow.getSize().x/16.f,  (3.f*startScreenWindow.getSize().y)/8.f);
@@ -106,7 +118,9 @@ void setupStartScreen (sf::RenderWindow& startScreenWindow) {
     beveragePromptText.setPosition(startScreenWindow.getSize().x/8.f + beveragePromptText.getGlobalBounds().width/2.f, namePromptText.getGlobalBounds().top + namePromptText.getGlobalBounds().height + whiteRectEmptySpaceY/4.f + beveragePromptText.getGlobalBounds().height/2.f);
     nameField.setTextFieldPosition(sf::Vector2f(whiteBackground.getPosition().x + (whiteBackground.getSize().x/2.f), namePromptText.getGlobalBounds().top));
     beverageField.setTextFieldPosition(sf::Vector2f(whiteBackground.getPosition().x + (whiteBackground.getSize().x/2.f), beveragePromptText.getGlobalBounds().top));
-    submitButton.setButtonPosition(sf::Vector2f((startScreenWindow.getSize().x - submitButton.getButtonSize().x)/2.f, beveragePromptText.getGlobalBounds().top + beveragePromptText.getGlobalBounds().height + whiteRectEmptySpaceY/4.f));
+    submitButton.setButtonPosition(sf::Vector2f((startScreenWindow.getSize().x - submitButton.getButtonSize().x)/2.f, beveragePromptText.getGlobalBounds().top + beveragePromptText.getGlobalBounds().height + whiteRectEmptySpaceY/3.f));
+    maleButton.setButtonPosition(sf::Vector2f((startScreenWindow.getSize().x - maleButton.getButtonSize().x)/8.f, beveragePromptText.getGlobalBounds().top + beveragePromptText.getGlobalBounds().height + whiteRectEmptySpaceY/7.f));
+    femaleButton.setButtonPosition(sf::Vector2f((startScreenWindow.getSize().x - maleButton.getButtonSize().x)/3.5f, beveragePromptText.getGlobalBounds().top + beveragePromptText.getGlobalBounds().height + whiteRectEmptySpaceY/7.f));
 }
 
 /*
@@ -147,6 +161,31 @@ void processStartScreenInput(sf::RenderWindow& startScreenWindow, sf::Event& sta
                 else if(startScreenEvent.mouseButton.x >= beverageField.getTextFieldPosition().x && startScreenEvent.mouseButton.x <= beverageField.getTextFieldPosition().x + beverageField.getTextFieldSize().x && startScreenEvent.mouseButton.y >= beverageField.getTextFieldPosition().y && startScreenEvent.mouseButton.y <= beverageField.getTextFieldPosition().y + beverageField.getTextFieldSize().y) {
                     nameField.setTextFieldFocus(false);
                     beverageField.setTextFieldFocus(true);
+                }
+                // if male button pressed
+                else if (startScreenEvent.mouseButton.x >= maleButton.getButtonPosition().x && startScreenEvent.mouseButton.x <= maleButton.getButtonPosition().x + maleButton.getButtonSize().x && startScreenEvent.mouseButton.y >= maleButton.getButtonPosition().y && startScreenEvent.mouseButton.y <= maleButton.getButtonPosition().y + maleButton.getButtonSize().y) {
+                    if (hasFlag(4)) {
+                        // clear flag and button color is female is already pressed
+                        clearFlag(4);
+                        femaleButton.setButtonColor(sf::Color::Transparent);
+                    }
+
+                    // set male flag and color button
+                    setFlag(3);
+                    maleButton.setButtonColor(sf::Color (137, 207, 240));
+                }
+                // if female button pressed
+                else if (startScreenEvent.mouseButton.x >= femaleButton.getButtonPosition().x && startScreenEvent.mouseButton.x <= femaleButton.getButtonPosition().x + femaleButton.getButtonSize().x && startScreenEvent.mouseButton.y >= femaleButton.getButtonPosition().y && startScreenEvent.mouseButton.y <= femaleButton.getButtonPosition().y + femaleButton.getButtonSize().y)
+                {
+                    if (hasFlag(3)) {
+                        // clear flag and button color is male is already pressed
+                        clearFlag(3);
+                        maleButton.setButtonColor(sf::Color::Transparent);
+                    }
+
+                    //set female flag and color button 
+                    setFlag(4);
+                    femaleButton.setButtonColor(sf::Color (255, 155, 155));
                 }
                 // submit button pressed
                 else if(startScreenEvent.mouseButton.x >= submitButton.getButtonPosition().x && startScreenEvent.mouseButton.x <= submitButton.getButtonPosition().x + submitButton.getButtonSize().x && startScreenEvent.mouseButton.y >= submitButton.getButtonPosition().y && startScreenEvent.mouseButton.y <= submitButton.getButtonPosition().y + submitButton.getButtonSize().y) {
@@ -215,6 +254,8 @@ void drawStartScreen(sf::RenderWindow& startScreenWindow) {
     nameField.drawTextField(startScreenWindow);
     beverageField.drawTextField(startScreenWindow);
     submitButton.drawButton(startScreenWindow);
+    maleButton.drawButton(startScreenWindow);
+    femaleButton.drawButton(startScreenWindow);
 
     // ends current frame
     startScreenWindow.display();
