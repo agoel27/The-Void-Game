@@ -7,5 +7,6 @@
 void setupStartScreen(sf::RenderWindow&);
 void processStartScreenInput(sf::RenderWindow&, sf::Event&);
 void drawStartScreen(sf::RenderWindow&);
+void pressSubmit();
 
 #endif
