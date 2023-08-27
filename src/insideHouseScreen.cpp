@@ -279,14 +279,13 @@ void movementUpdate()
             player_f.SetTextureRect(16,yTexture,17,17);
             moveVector.x += moveSpeed;
         }
-
+    }
     if (hasFlag(3)) {
-        tryMoveObject(player_m, moveVector);
+        tryMoveGameObject(player_m, moveVector);
     }
     else if (hasFlag(4)) {
-        tryMoveObject(player_f, moveVector);
+        tryMoveGameObject(player_f, moveVector);
     }
-//     tryMoveGameObject(player, moveVector);
 }
 
 /*
