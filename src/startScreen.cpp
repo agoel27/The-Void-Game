@@ -144,10 +144,22 @@ void processStartScreenInput(sf::RenderWindow& startScreenWindow, sf::Event& sta
                 // handles text entered if focus is on name text field
                 if(nameField.getTextFieldFocus()) {
                     nameField.processTextFieldInput(startScreenEvent);
+                    // tab or enter pressed
+                    if(startScreenEvent.text.unicode == 9 || startScreenEvent.text.unicode == 10) {
+                        beverageField.setTextFieldFocus(true);
+                    }
                 }
                 // handles text entered if focus is on beverage text field
                 else if(beverageField.getTextFieldFocus()){
                     beverageField.processTextFieldInput(startScreenEvent);
+                    // enter pressed
+                    if(startScreenEvent.text.unicode == 10) {
+                        pressSubmit();
+                    }
+                }
+                //enter pressed
+                else if(startScreenEvent.text.unicode == 10) {
+                    pressSubmit();
                 }
                 break;
             // mouse button pressed event
@@ -173,6 +185,8 @@ void processStartScreenInput(sf::RenderWindow& startScreenWindow, sf::Event& sta
                     // set male flag and color button
                     setFlag(3);
                     maleButton.setButtonColor(sf::Color (137, 207, 240));
+                    nameField.setTextFieldFocus(false);
+                    beverageField.setTextFieldFocus(false);
                 }
                 // if female button pressed
                 else if (startScreenEvent.mouseButton.x >= femaleButton.getButtonPosition().x && startScreenEvent.mouseButton.x <= femaleButton.getButtonPosition().x + femaleButton.getButtonSize().x && startScreenEvent.mouseButton.y >= femaleButton.getButtonPosition().y && startScreenEvent.mouseButton.y <= femaleButton.getButtonPosition().y + femaleButton.getButtonSize().y)
@@ -186,6 +200,8 @@ void processStartScreenInput(sf::RenderWindow& startScreenWindow, sf::Event& sta
                     //set female flag and color button 
                     setFlag(4);
                     femaleButton.setButtonColor(sf::Color (255, 155, 155));
+                    nameField.setTextFieldFocus(false);
+                    beverageField.setTextFieldFocus(false);
                 }
                 // submit button pressed
                 else if(startScreenEvent.mouseButton.x >= submitButton.getButtonPosition().x && startScreenEvent.mouseButton.x <= submitButton.getButtonPosition().x + submitButton.getButtonSize().x && startScreenEvent.mouseButton.y >= submitButton.getButtonPosition().y && startScreenEvent.mouseButton.y <= submitButton.getButtonPosition().y + submitButton.getButtonSize().y) {
@@ -198,27 +214,6 @@ void processStartScreenInput(sf::RenderWindow& startScreenWindow, sf::Event& sta
                 else {
                     nameField.setTextFieldFocus(false);
                     beverageField.setTextFieldFocus(false);
-                }
-                break;
-            //A keyboard button press
-            case sf::Event::KeyPressed:
-                if(startScreenEvent.key.code == sf::Keyboard::Enter)
-                {
-                    if(nameField.getTextFieldFocus()) {
-                        nameField.setTextFieldFocus(false);
-                        beverageField.setTextFieldFocus(true);
-                    }
-                    // handles text entered if focus is on beverage text field
-                    else if(beverageField.getTextFieldFocus()){
-                        beverageField.setTextFieldFocus(false);
-                        //press submit button
-                        pressSubmit();
-                    }
-                    else
-                    {
-                        //press submit button
-                        pressSubmit();
-                    }
                 }
                 break;
             // "close requested" event: close the window
@@ -264,7 +259,7 @@ void drawStartScreen(sf::RenderWindow& startScreenWindow) {
 void pressSubmit()
 {
     // changes submit button to red to show that player has not entered name and beverage
-    if(nameField.getTextFieldStr() == "" || beverageField.getTextFieldStr() == "") {
+    if(nameField.getTextFieldStr() == "" || beverageField.getTextFieldStr() == "" || (!hasFlag(3) && !hasFlag(4))) {
         if(nameField.getTextFieldStr() == "") {
             nameField.setTextFieldOutlineColor(sf::Color::Red);
         }
@@ -277,6 +272,15 @@ void pressSubmit()
         else {
             beverageField.setTextFieldOutlineColor(sf::Color::Black);
         }
+        if((!hasFlag(3) && !hasFlag(4))) {
+            maleButton.setButtonOutlineColor(sf::Color::Red);
+            femaleButton.setButtonOutlineColor(sf::Color::Red);
+        }
+        else {
+            maleButton.setButtonOutlineColor(sf::Color::Black);
+            femaleButton.setButtonOutlineColor(sf::Color::Black);
+        }
+
         submitButton.setButtonOutlineColor(sf::Color::Red);
         submitButton.setButtonTextColor(sf::Color::Red);
     }

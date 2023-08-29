@@ -133,10 +133,9 @@ void TextField::processTextFieldInput(sf::Event& textEntered) {
         _textBuffer << newTextBuffer;
         _text.setString(getTextFieldStr() + "_");
     }
-    // if enter or tab pressed, text field loses focus
+    // if tab or enter pressed, text field loses focus
     else if(charTyped == 9 || charTyped == 10) {
         setTextFieldFocus(false);
-        _text.setString(getTextFieldStr());
     }
     // reset position since text buffer was updated
     setTextFieldPosition(getTextFieldPosition());
