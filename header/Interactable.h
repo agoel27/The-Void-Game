@@ -11,16 +11,20 @@ class Interactable : public GameObject
             text_inventory_equipable, //text, then added to inventory. Can be equiped (moved to equipment slot)
             text_inventory_consumable //text, then added to inventory. Can be consumed (destroyed)
         };
-        Interactable(sf::Vector2f position, sf::Vector2f scale, std::string texturePath, std::string description, Type type);
+        Interactable(sf::Vector2f position, sf::Vector2f scale, std::string texturePath, std::string description, Type type = text, std::string objectName = "");
         std::string GetDescription() {
             return _description;
         }
         Type GetType() {
             return _type;
         }
+        std::string GetName() {
+            return _objectName;
+        }
     private:
-        Type _type = text;
+        Type _type;
         std::string _description;
+        std::string _objectName;
 };
 
 #endif

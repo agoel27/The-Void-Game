@@ -1,5 +1,6 @@
 #include "../header/InteractionManager.h"
 #include <iostream>
+#include "../header/StoryBeats.h"
 
 InteractionManager::InteractionManager(std::vector<Interactable>& interactables)
 {
@@ -17,6 +18,15 @@ void InteractionManager::EventUpdate(sf::Event& event, TextboxManager& textbox)
                 if(event.mouseButton.x >= rect.left && event.mouseButton.x <= rect.left + rect.width
                 && event.mouseButton.y >= rect.top && event.mouseButton.y <= rect.top + rect.height)
                 {
+                    setFlag(3); // this is hardcoded - NEED TO REMOVE LATER
+                    if(iter->GetName() == "door" && hasFlag(3)) {
+                        clearFlag(2);
+                        setFlag(4);
+                    }
+                    if(iter->GetName() == "outsideDoor") {
+                        clearFlag(4);
+                        setFlag(2);
+                    }
                     std::cout << "Interacting with " << iter->GetDescription() << std::endl;
                     Interact(*iter, textbox);
 

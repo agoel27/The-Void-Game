@@ -1,6 +1,7 @@
 #include <stdlib.h>     // exit, EXIT_FAILURE
 #include <iostream>
 #include "../header/insideHouseScreen.h"
+#include "../header/StoryBeats.h"
 
 /*
     Implements inside house screen related functions
@@ -13,8 +14,6 @@
         - Definitely works if working directory is ../final-project-thevoidgame
 */
 
-//WORLD
-sf::RectangleShape world(sf::Vector2f(1200, 800));
 
 //GameObjects
 GameObject flooring(sf::Vector2f(1 * 64 + 300, 2 * 64), sf::Vector2f(2.0f, 2.0f), "resources/room.png");
@@ -33,7 +32,7 @@ Interactable wardrobe(sf::Vector2f(2 * 64 + 300, 1 * 64 + 32), sf::Vector2f(2.0f
 Interactable bookshelf(sf::Vector2f(1 * 64 + 300, 4 * 64), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "The books have no titles, the pages are empty.", Interactable::text);
 Interactable bookshelf2(sf::Vector2f(1 * 64 + 300, 5 * 64), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "There's a box of herbs and a pop vinyl.", Interactable::text);
 Interactable windowsill(sf::Vector2f(4 * 64 + 300, 1 * 64), sf::Vector2f(2.0f, 2.0f), "resources/room.png", "Thick with Dirt?", Interactable::text);
-Interactable door(sf::Vector2f(6 * 64 + 300, 8 * 64), sf::Vector2f(2.0f, 2.0f), "resources/room.png", "It's locked", Interactable::text);
+Interactable door(sf::Vector2f(6 * 64 + 300, 8 * 64), sf::Vector2f(2.0f, 2.0f), "resources/room.png", "It's locked", Interactable::text, "door");
 std::vector<Interactable> Interactables;
 
 //UI
@@ -47,8 +46,7 @@ InteractionManager interactionManager(Interactables);
     Input:  insideHouseWindow - alias of RenderWindow object
 */
 void setupInsideHouse (sf::RenderWindow& window) {
-    world.setFillColor(sf::Color(10, 9, 9));
-
+    
     flooring.SetTextureRect(10 * 32, 0 * 32, 7 * 32, 8 * 32);
     walls.SetTextureRect(0 * 32, 0 * 32, 9 * 32, 10 * 32);
     GameObjects.push_back(flooring);
@@ -106,9 +104,8 @@ void insideHouseEventUpdate(sf::Event& event)
     if(event.type == sf::Event::KeyPressed)
     {
         //Key press events
-        if(event.key.code == sf::Keyboard::Space)
+        if(event.key.code == sf::Keyboard::Space) 
             textBox.Next();
-
     }
     interactionManager.EventUpdate(event, textBox);
 }
@@ -128,6 +125,9 @@ void insideHouseUpdate()
 */
 void drawInsideHouse(sf::RenderWindow& window)
 {
+    // clears window with black color
+    window.clear(sf::Color(10, 9, 9));
+
     //Render must be called on all objects before they are drawn
     for(int i = 0; i < GameObjects.size(); i++)
         GameObjects[i].Render();
@@ -137,7 +137,6 @@ void drawInsideHouse(sf::RenderWindow& window)
     textBox.Render();
 
     //DRAW ORDER
-    window.draw(world);
     for(int i = 0; i < GameObjects.size(); i++)
         window.draw(GameObjects[i]);
     for(int i = 0; i < Interactables.size(); i++)
