@@ -20,6 +20,8 @@ void InteractionManager::EventUpdate(sf::Event& event, TextboxManager& textbox)
                 {
                     setFlag(3); // this is hardcoded - NEED TO REMOVE LATER
                     if(iter->GetName() == "door" && hasFlag(3)) {
+                        iter->SetDescription("It's unlocked");
+                        iter->SetTextureRect(11*32, 8*32, 2*32, 32);
                         clearFlag(2);
                         setFlag(4);
                     }

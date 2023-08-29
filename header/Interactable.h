@@ -21,6 +21,9 @@ class Interactable : public GameObject
         std::string GetName() {
             return _objectName;
         }
+        void SetDescription(std::string objectDescription) {
+            _description = objectDescription;
+        }
     private:
         Type _type;
         std::string _description;
