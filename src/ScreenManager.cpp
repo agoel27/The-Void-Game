@@ -49,7 +49,7 @@ int main() {
             processInsideHouseInput(gameWindow, screenEvent);
             drawInsideHouse(gameWindow);
         }
-        else if(hasFlag(4)) {
+        else if(hasFlag(6)) {
             // process player input and draws outside house screen
             processOutsideHouseInput(gameWindow, screenEvent);
             drawOutsideHouse(gameWindow);
