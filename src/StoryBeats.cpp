@@ -7,7 +7,7 @@
 */
 
 // array to store flag values
-bool gameFlags[] = {false, false, false, false, false}; // Initialize all flags as false
+bool gameFlags[] = {false, false, false, false, false, false, false}; // Initialize all flags as false
 
 /*
     This function sets a flag in the game to true

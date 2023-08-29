@@ -13,7 +13,7 @@ class TextboxManager : public sf::Drawable
         sf::Text _text;
         float _border = 5.0f;
         float _boxMargin = 20.0f;
-        float _textMargin = 5.0f;
+        float _textMargin = 20.0f;
     public:
         TextboxManager();
         void SetText(std::string text, char delimiter);

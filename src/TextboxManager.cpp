@@ -7,10 +7,10 @@ TextboxManager::TextboxManager()
     _font.loadFromFile("resources/pixelFont.ttf");
     _text.setFont(_font);
 
-    _textbox.setSize(sf::Vector2f(800 - 2 * _boxMargin, 400 - 2 * _boxMargin));
+    _textbox.setSize(sf::Vector2f(1200 - 2 * _boxMargin, 125));
 
-    _textbox.setPosition(sf::Vector2f(0 + _boxMargin + 250, 400 + _boxMargin));
-    _text.setPosition(sf::Vector2f(0 + _boxMargin + _textMargin + 250, 400 + _boxMargin + _textMargin));
+    _textbox.setPosition(sf::Vector2f(_boxMargin, 800 - _textbox.getSize().y - _boxMargin));
+    _text.setPosition(sf::Vector2f(_boxMargin + _textMargin, _textbox.getPosition().y));
 
     _textbox.setFillColor(sf::Color(0, 0, 0));
     _text.setFillColor(sf::Color(255, 255, 255));

@@ -3,6 +3,7 @@
 #include "../header/titleScreen.h"
 #include "../header/startScreen.h"
 #include "../header/insideHouseScreen.h"
+#include "../header/outsideScreen.h"
 
 /*
     Manages all the screens. Refer to Navigation Layout on README
@@ -25,6 +26,7 @@ int main() {
     setupTitleScreen(gameWindow);
     setupStartScreen(gameWindow);
     setupInsideHouse(gameWindow);
+    setupOutsideHouse(gameWindow);
 
     // start game by setting ENTER_TITLE_SCREEN_FLAG
     setFlag(0);
@@ -38,14 +40,19 @@ int main() {
             drawTitleScreen(gameWindow);
         }
         else if(hasFlag(1)) {
-            // process player input and draws title screen
+            // process player input and draws start screen
             processStartScreenInput(gameWindow, screenEvent);
             drawStartScreen(gameWindow);
         }
         else if(hasFlag(2)) {
-            // process player input and draws title screen
+            // process player input and draws inside house screen
             processInsideHouseInput(gameWindow, screenEvent);
             drawInsideHouse(gameWindow);
+        }
+        else if(hasFlag(6)) {
+            // process player input and draws outside house screen
+            processOutsideHouseInput(gameWindow, screenEvent);
+            drawOutsideHouse(gameWindow);
         }
     }
     return 0;
