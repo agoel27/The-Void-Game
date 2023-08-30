@@ -18,7 +18,6 @@ void InteractionManager::EventUpdate(sf::Event& event, TextboxManager& textbox)
                 if(event.mouseButton.x >= rect.left && event.mouseButton.x <= rect.left + rect.width
                 && event.mouseButton.y >= rect.top && event.mouseButton.y <= rect.top + rect.height)
                 {
-                    setFlag(5); // sets key flag // this is hardcoded - NEED TO REMOVE LATER
                     if(iter->GetName() == "door" && hasFlag(5)) {
                         iter->SetDescription("It's unlocked");
                         iter->SetTextureRect(11*32, 8*32, 2*32, 32);
@@ -28,6 +27,10 @@ void InteractionManager::EventUpdate(sf::Event& event, TextboxManager& textbox)
                     if(iter->GetName() == "outsideDoor") {
                         clearFlag(6);
                         setFlag(2);
+                    }
+                    if(iter->GetName() == "key") {
+                        iter->SetTextureRect(0, 0, 0, 0);
+                        setFlag(5);
                     }
                     std::cout << "Interacting with " << iter->GetDescription() << std::endl;
                     Interact(*iter, textbox);
