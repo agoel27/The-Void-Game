@@ -23,11 +23,11 @@ GameObject outsideHouse(sf::Vector2f(584 - 48, 375 - 176), sf::Vector2f(2.0f, 2.
 std::vector<GameObject> outsideGameObjects;
 
 //Interactables
-Interactable outsideDoor(sf::Vector2f(584, 375), sf::Vector2f(2.0f, 2.0f), "resources/room.png", "It's unlocked", Interactable::text, "outsideDoor");
-Interactable well(sf::Vector2f(425, 275), sf::Vector2f(2.0f, 2.0f), "resources/decorative_props.png", "The well's bottomless darkness conceal both secrets and despair \nJump in? \nHaha probably not a good idea!", Interactable::text);
-Interactable emptyBoxesHorizontal(sf::Vector2f(375, 500), sf::Vector2f(2.0f, 2.0f), "resources/decorative_props.png", "Boxes adrift in an abyss of nothingness", Interactable::text, true, true);
-Interactable emptyBoxesLong(sf::Vector2f(250, 500), sf::Vector2f(2.0f, 2.0f), "resources/decorative_props.png", "Alone in the black void, all that remain are empty boxes, harboring untold mysteries.", Interactable::text, true, true);
-Interactable emptyBoxesVertical(sf::Vector2f(325, 400), sf::Vector2f(2.0f, 2.0f), "resources/decorative_props.png", "Hollow boxes echo with the weight of the unknown.", Interactable::text, true, true);
+Interactable outsideDoor(sf::Vector2f(584, 375), sf::Vector2f(2.0f, 2.0f), "resources/room.png", "*It's unlocked*", Interactable::text, "outsideDoor");
+Interactable well(sf::Vector2f(425, 275), sf::Vector2f(2.0f, 2.0f), "resources/decorative_props.png", "*The well's bottomless darkness conceal both secrets and despair* \n*Jump in?* \n*Haha probably not a good idea!*", Interactable::text);
+Interactable emptyBoxesHorizontal(sf::Vector2f(375, 500), sf::Vector2f(2.0f, 2.0f), "resources/decorative_props.png", "*Boxes adrift in an abyss of nothingness*", Interactable::text, true, true);
+Interactable emptyBoxesLong(sf::Vector2f(250, 500), sf::Vector2f(2.0f, 2.0f), "resources/decorative_props.png", "*Alone in the black void, all that remain are empty boxes, harboring untold mysteries*", Interactable::text);
+Interactable emptyBoxesVertical(sf::Vector2f(325, 400), sf::Vector2f(2.0f, 2.0f), "resources/decorative_props.png", "*Hollow boxes echo with the weight of the unknown*", Interactable::text, true, true);
 std::vector<Interactable> outsideInteractables;
 
 //UI
@@ -63,6 +63,8 @@ void setupOutsideHouse (sf::RenderWindow& window) {
     outsideInteractables.push_back(emptyBoxesHorizontal);
     outsideInteractables.push_back(emptyBoxesLong);
     outsideInteractables.push_back(emptyBoxesVertical);
+
+    outsideTextBox.SetText("THIS CAN'T BE!!!,WHAT HAPPENED TO EVERYTHING,WHY IS IT ALL A VOID???,*If the reality of this emptiness becomes unbearable* \n*I'll lull you into slumber and strip your memories away*,*Then you shall awaken once more* \n*Destined to endure this dreadful revelation anew*,WHO WAS THAT!?,", ',');
 }
 
 /*

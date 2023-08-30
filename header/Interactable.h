@@ -13,7 +13,7 @@ class Interactable : public GameObject
         };
         
         Interactable(sf::Vector2f position, sf::Vector2f scale, std::string texturePath, std::string description, Type type = text, std::string objectName = "");
-        Interactable(sf::Vector2f position, sf::Vector2f scale, std::string texturePath, std::string description, Type type, bool collides, bool pushable);
+        Interactable(sf::Vector2f position, sf::Vector2f scale, std::string texturePath, std::string description, Type type, bool collides, bool pushable, std::string objectName = "");
         
         std::string GetDescription() {
             return _description;

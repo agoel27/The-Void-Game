@@ -11,6 +11,7 @@ class TextboxManager : public sf::Drawable
         sf::RectangleShape _textbox;
         sf::Font _font;
         sf::Text _text;
+        sf::Text _continueText;
         float _border = 5.0f;
         float _boxMargin = 20.0f;
         float _textMargin = 20.0f;

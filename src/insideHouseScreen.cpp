@@ -28,16 +28,16 @@ GameObject doorFrame(sf::Vector2f(64 * 6 + 300, 7 * 64), sf::Vector2f(2.0f, 2.0f
 std::vector<GameObject> GameObjects;
 
 //Interactables
-Interactable key(sf::Vector2f(6 * 64 + 16 + 300, 2 * 64), sf::Vector2f(1.0f, 1.0f), "resources/key.png", "There it is!", Interactable::text, false, false);
-Interactable bed(sf::Vector2f(6 * 64 + 300, 2 * 64 - 16), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "Feeling Sleepy?", Interactable::text, true, true);
-Interactable table(sf::Vector2f(3 * 64 + 300, 4 * 64), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "Where's the food?", Interactable::text);
-Interactable bedside_table(sf::Vector2f(7 * 64 + 300, 2 * 64 - 16), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "There's tablets in here.\nNo wait they're hydratable dinosaur sponges.", Interactable::text);
-Interactable wardrobe(sf::Vector2f(2 * 64 + 300, 1 * 64 + 24), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "The usual.", Interactable::text);
-Interactable chair(sf::Vector2f(2 * 64 + 32 + 300, 4 * 64 + 32), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "For Sitting and Stuff.", Interactable::text);
-Interactable bookshelf(sf::Vector2f(1 * 64 + 300, 4 * 64), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "The books have no titles, the pages are empty.", Interactable::text);
-Interactable bookshelf2(sf::Vector2f(1 * 64 + 300, 5 * 64), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "There's a box of herbs and a pop vinyl.", Interactable::text);
-Interactable windowsill(sf::Vector2f(4 * 64 + 300, 1 * 64), sf::Vector2f(2.0f, 2.0f), "resources/room.png", "Thick with Dirt?", Interactable::text);
-Interactable door(sf::Vector2f(6 * 64 + 300, 8 * 64), sf::Vector2f(2.0f, 2.0f), "resources/room.png", "It's locked", Interactable::text, "door");
+Interactable key(sf::Vector2f(6 * 64 + 16 + 300, 2 * 64), sf::Vector2f(1.0f, 1.0f), "resources/key.png", "There it is!", Interactable::text, false, false, "key");
+Interactable bed(sf::Vector2f(6 * 64 + 300, 2 * 64 - 16), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "*The bed exudes an eerie stillness, its presence a silent invitation to unsettling dreams*", Interactable::text, true, true);
+Interactable table(sf::Vector2f(3 * 64 + 400, 4 * 64 + 50), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "*The wooden table stands weathered and worn* \n*Its surface is etched with the stories of countless meals and whispered conversations*", Interactable::text);
+Interactable bedside_table(sf::Vector2f(7 * 64 + 300, 2 * 64 - 16), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "There are tablets in here.\n*No wait! They are hydratable dinosaur sponges*", Interactable::text);
+Interactable wardrobe(sf::Vector2f(2 * 64 + 300, 1 * 64 + 24), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "*The closet looms in the corner* \n*Who knows what lies beyond its closed doors...*", Interactable::text);
+Interactable chair(sf::Vector2f(2 * 64 + 32 + 395, 4 * 64 + 60), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "*For Sitting and Stuff*", Interactable::text, true, true);
+Interactable bookshelf(sf::Vector2f(1 * 64 + 300, 4 * 64), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "*The books have no titles, the pages are empty*", Interactable::text);
+Interactable bookshelf2(sf::Vector2f(1 * 64 + 300, 5 * 64), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "*There's a box of herbs and a pop vinyl*", Interactable::text);
+Interactable windowsill(sf::Vector2f(4 * 64 + 300, 1 * 64), sf::Vector2f(2.0f, 2.0f), "resources/room.png", "*Thick with dirt*", Interactable::text);
+Interactable door(sf::Vector2f(6 * 64 + 300, 8 * 64), sf::Vector2f(2.0f, 2.0f), "resources/room.png", "*It's locked*\nI wonder where I left my key?\n*Hint: Push stuff around*", Interactable::text, "door");
 std::vector<Interactable> Interactables;
 
 //UI
@@ -60,8 +60,6 @@ void setupInsideHouse (sf::RenderWindow& window) {
     bottomRightWall.SetTextureRect(7 * 32, 7 * 32 + 18, 2 * 32 - 18, 2 * 32);
     doorFrame.SetTextureRect(6 * 32, 7 * 32, 1 * 32, 1 * 32);
 
-
-
     GameObjects.push_back(flooring);
     GameObjects.push_back(leftWall);
     GameObjects.push_back(rightWall);
@@ -69,8 +67,6 @@ void setupInsideHouse (sf::RenderWindow& window) {
     GameObjects.push_back(bottomLeftWall);
     GameObjects.push_back(bottomRightWall);
     GameObjects.push_back(doorFrame);
-
-
 
     windowsill.SetTextureRect(10 * 32, 7 * 32, 32, 32);
     wardrobe.SetTextureRect(6 * 32, 0 * 32, 2 * 32 - 16, 32);
@@ -83,15 +79,11 @@ void setupInsideHouse (sf::RenderWindow& window) {
     bookshelf2.SetTextureRect(0, 6 * 32 + 8, 2 * 32 - 8, 32 - 16);
     door.SetTextureRect(10 * 32, 8 * 32, 2 * 32, 32);
 
-
-
     wardrobe.SetColliderRect(6, 1, 6, 6);
     bed.SetColliderRect(5, 20, 0, 5);
     table.SetColliderRect(10, 3, 13, 10);
     bedside_table.SetColliderRect(3, 13, 9, 3);
     chair.SetColliderRect(3, 5, 8, 10);
-
-
 
     Interactables.push_back(key);
     Interactables.push_back(windowsill);
@@ -106,6 +98,8 @@ void setupInsideHouse (sf::RenderWindow& window) {
 
     player_m.SetTextureRect(0,0,17,17);
     player_f.SetTextureRect(0,0,17,17);
+
+    textBox.SetText("What... Where am I? \nWhy can't I remember anything?,This... This is my bedroom!,*Use 'WASD' keys to move*,*Click on objects to find clues*", ',');
 }
 
 /*
