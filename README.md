@@ -2,7 +2,11 @@
  
 # The Void Game
  
-Authors: [Ivan Marozau](https://github.com/MatterCollapse),[Aryan Goel](https://github.com/agoel27),[Angel Hernandez](https://github.com/ahern650),[Jacob Rozenkrants](https://github.com/jar04)
+## Authors: 
+* Name: [Ivan Marozau](https://github.com/MatterCollapse), netID: imaro003, SID: 862223426
+* Name: [Aryan Goel](https://github.com/agoel27), netID: agoel006, SID: 862134846
+* Name: [Angel Hernandez](https://github.com/ahern650), netID: ahern650, SID: 862320427
+* Name: [Jacob Rozenkrants](https://github.com/jar04), netID: jroze002, SID: 862350684
 
 ## Project Description
 ### Why is it important or interesting to you?
@@ -80,23 +84,32 @@ Includes a navigation diagram for our screens and the layout of each of those sc
 
 ## Class Diagram
 ![Class Diagram](https://github.com/cs100/final-project-thevoidgame/blob/master/ClassDiagram.png?raw=true)
+* This class diagram is the whole representation of our game's class structure.
+* However, since this is hard to interpret, we have broken it down into the following 3 diagram
+
+![Class Diagram 2](https://github.com/cs100/final-project-thevoidgame/blob/master/ClassDiagram2.png)
 * Screen Manager has the main function that contains the game loop which handles which screens to draw and process
-* Each screen class depends on the GameObject, Interactables, UI, and Manager classes to draw graphic elements and process player input
-* Story Beats class contains game flags that set or clear based on progression on player through the game
-* Interaction Manager class handles interactables and populates the textbox based on the interactable and story beats
+* It depends on all the screen classes and the story beats class which contains boolean flags that indicate the progression of the player through the game.
+
+![Class Diagram 3](https://github.com/cs100/final-project-thevoidgame/blob/master/ClassDiagram3.png)
+* The start screen draws the screen and processes all the player input on this screen.
+* This class depends on story beats to set the appropriate flag when the player presses submit.
+* It also depends on Button and TextField to create buttons and text fields on the screen.
+
+![Class Diagram 4](https://github.com/cs100/final-project-thevoidgame/blob/master/ClassDiagram4.png)
+* This class diagram is applicable for the outside house screen as well.
+* The inside house screen draws the inside house screen and processes all the player input on this screen.
+* This class depends on story beats to set the appropriate flag when the player finds the key.
+* It depends on Inventory Manager to handle the Inventory.
+* Additionally, it depends on TextboxManager to handle the textbox
+* It also depends on GameObject + Interactables to create items in the house.
+* Interaction Manager class handles interactables and populates the textbox based on the interactable
 
 ### Class Diagram Updates
 * Originally the Screen Manager handled which screens to draw, drawing all screens, and processesing all screens.
 * In accordance with the Single Responsibility Principle, Screen Manager now only handles which screens to draw and process in its game loop. 
 * It does not hold all the keybinds and it does not create gameobjects. There are classes responsible just for the objects on their screen. 
 * Now Screen Manager will not be bogged down by large blocks of gameobject instantiation. 
- 
-## Final deliverable
- > All group members will give a demo to the reader during lab time. ou should schedule your demo on Calendly with the same reader who took your second scrum meeting. The reader will check the demo and the project GitHub repository and ask a few questions to all the team members. 
- > Before the demo, you should do the following:
- > * Complete the sections below (i.e. Screenshots, Installation/Usage, Testing)
- > * Plan one more sprint (that you will not necessarily complete before the end of the quarter). Your In-progress and In-testing columns should be empty (you are not doing more work currently) but your TODO column should have a full sprint plan in it as you have done before. This should include any known bugs (there should be some) or new features you would like to add. These should appear as issues/cards on your Project board.
- > * Make sure your README file and Project board are up-to-date reflecting the current status of your project (e.g. any changes that you have made during the project such as changes to your class diagram). Previous versions should still be visible through your commit history. 
  
  ## Screenshots
  > Screenshots of the input/output after running your application
