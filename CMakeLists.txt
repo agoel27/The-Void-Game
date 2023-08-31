@@ -7,7 +7,8 @@ add_executable(voidGame src/Button.cpp
 src/insideHouseScreen.cpp src/ScreenManager.cpp src/startScreen.cpp
 src/StoryBeats.cpp src/TextField.cpp src/titleScreen.cpp
 src/GameObject.cpp src/Interactable.cpp src/TextboxManager.cpp
-src/InteractionManager.cpp)
+src/InteractionManager.cpp src/outsideScreen.cpp
+src/InventoryManager.cpp)
 
 include_directories(header src /usr/include c:/SFML/include)
 

@@ -2,6 +2,7 @@
 #include <iostream>
 #include "../header/insideHouseScreen.h"
 #include "../header/StoryBeats.h"
+#include "../header/InventoryManager.h"
 
 /*
     Implements inside house screen related functions
@@ -28,7 +29,7 @@ GameObject doorFrame(sf::Vector2f(64 * 6 + 300, 7 * 64), sf::Vector2f(2.0f, 2.0f
 std::vector<GameObject> GameObjects;
 
 //Interactables
-Interactable key(sf::Vector2f(6 * 64 + 16 + 300, 2 * 64), sf::Vector2f(1.0f, 1.0f), "resources/key.png", "There it is!", Interactable::text, false, false, "key");
+Interactable key(sf::Vector2f(6 * 64 + 16 + 300, 2 * 64), sf::Vector2f(1.0f, 1.0f), "resources/key.png", "There it is!\n*Use left mouse button to open Inventory*\n*Press 'Q' to quit inventory*\n*Press 'E' to add item to inventory*\n*Press 'z' to drop item from inventory*", Interactable::text, false, false, "key");
 Interactable bed(sf::Vector2f(6 * 64 + 300, 2 * 64 - 16), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "*The bed exudes an eerie stillness, its presence a silent invitation to unsettling dreams*", Interactable::text, true, true);
 Interactable table(sf::Vector2f(3 * 64 + 400, 4 * 64 + 50), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "*The wooden table stands weathered and worn* \n*Its surface is etched with the stories of countless meals and whispered conversations*", Interactable::text);
 Interactable bedside_table(sf::Vector2f(7 * 64 + 300, 2 * 64 - 16), sf::Vector2f(2.0f, 2.0f), "resources/furniture.png", "There are tablets in here.\n*No wait! They are hydratable dinosaur sponges*", Interactable::text);
@@ -42,6 +43,7 @@ std::vector<Interactable> Interactables;
 
 //UI
 TextboxManager textBox;
+InventoryManager inventory;
 InteractionManager interactionManager(Interactables);
 
 /*
@@ -133,10 +135,57 @@ void insideHouseEventUpdate(sf::Event& event)
     //perform input-related updates
     if(event.type == sf::Event::KeyPressed)
     {
+        if(event.key.code == sf::Keyboard::E)
+        {
+            if(interactionManager.getInventoryCondition() && !inventory.getIsInventoryFull())
+            {
+                std::cout << "Inventory is open" << std:: endl;
+                inventory.addItem(interactionManager.getInteractableToBeAdded());
+            }
+            else
+            {
+                std::cout << "Inventory is not open or inventory is full" << std:: endl;
+            }
+        }
+
+        if(event.key.code == sf::Keyboard::Z)
+            {
+                if(interactionManager.getInventoryCondition())
+                {
+                    std::cout << "Inventory is open" << std:: endl;
+                    if(inventory.getIsInventoryFull())
+                    {
+                        std::cout << "Can drop item" << std:: endl;
+                        if(hasFlag(3))
+                        {
+                            inventory.dropItem(player_m);
+                        }
+                        else if(hasFlag(4))
+                        {
+                            inventory.dropItem(player_f);
+                        }
+                    }
+                    else
+                    {
+                        std::cout << "Inventory is empty" << std:: endl;
+                    }
+                    
+                }
+                else
+                {
+                    std::cout << "Inventory is not open" << std:: endl;
+                }
+            }
+
+
         //Key press events
         if(event.key.code == sf::Keyboard::Space || event.key.code == sf::Keyboard::Enter)
             textBox.Next();
+        else if(!inventory.getIsInventoryFull() && (event.key.code == sf::Keyboard::Q))
+            inventory.Exit();
+            interactionManager.setInventoryClosed();
     }
+    interactionManager.EventUpdate(event, inventory);
     interactionManager.EventUpdate(event, textBox);
 }
 
@@ -186,6 +235,7 @@ void drawInsideHouse(sf::RenderWindow& window)
     }
     //window.draw(player);
     window.draw(textBox);
+    window.draw(inventory);
 
     //Display
     window.display();
