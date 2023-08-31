@@ -98,10 +98,18 @@ Includes a navigation diagram for our screens and the layout of each of those sc
  > * Plan one more sprint (that you will not necessarily complete before the end of the quarter). Your In-progress and In-testing columns should be empty (you are not doing more work currently) but your TODO column should have a full sprint plan in it as you have done before. This should include any known bugs (there should be some) or new features you would like to add. These should appear as issues/cards on your Project board.
  > * Make sure your README file and Project board are up-to-date reflecting the current status of your project (e.g. any changes that you have made during the project such as changes to your class diagram). Previous versions should still be visible through your commit history. 
  
- ## Screenshots
+## Screenshots
  > Screenshots of the input/output after running your application
- ## Installation/Usage
- > Instructions on installing and running your application
- ## Testing
- > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
+ ![Title Screen](https://github.com/cs100/final-project-thevoidgame/blob/master/titleScreen.png?raw=true)
+ ![Start Screen](https://github.com/cs100/final-project-thevoidgame/blob/master/startScreen.png?raw=true)
+ ![Inventory](https://github.com/cs100/final-project-thevoidgame/blob/master/inventory.png?raw=true)
+ ![Key](https://github.com/cs100/final-project-thevoidgame/blob/master/key.png?raw=true)
+ ![Key Grabbed](https://github.com/cs100/final-project-thevoidgame/blob/master/keyGrabbed.png?raw=true)
+ ![Outside](https://github.com/cs100/final-project-thevoidgame/blob/master/outside.png?raw=true)
+ ![Room](https://github.com/cs100/final-project-thevoidgame/blob/master/room.png?raw=true)
+ ![Textbox](https://github.com/cs100/final-project-thevoidgame/blob/master/textbox.png?raw=true)
+## Installation/Usage
+ > The Github contains a compressed Build file. Once extracted, the EXE inside runs the game
+## Testing
+ > The project was Alpha tested by each member. It was run repeatedly with varying inputs to test visual rendering, collision, input handling, menu transitions, animation, and dialogue
  
