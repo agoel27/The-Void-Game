@@ -2,6 +2,7 @@
 #include <iostream>
 #include "../header/insideHouseScreen.h"
 #include "../header/StoryBeats.h"
+#include "../header/InventoryManager.h"
 
 /*
     Implements inside house screen related functions
@@ -42,6 +43,7 @@ std::vector<Interactable> Interactables;
 
 //UI
 TextboxManager textBox;
+InventoryManager inventory;
 InteractionManager interactionManager(Interactables);
 
 /*
@@ -133,10 +135,57 @@ void insideHouseEventUpdate(sf::Event& event)
     //perform input-related updates
     if(event.type == sf::Event::KeyPressed)
     {
+        if(event.key.code == sf::Keyboard::E)
+        {
+            if(interactionManager.getInventoryCondition())
+            {
+                std::cout << "Inventory is open" << std:: endl;
+                inventory.addItem(interactionManager.getInteractableToBeAdded());
+            }
+            else
+            {
+                std::cout << "Inventory is not open" << std:: endl;
+            }
+        }
+
+        if(event.key.code == sf::Keyboard::Z)
+            {
+                if(interactionManager.getInventoryCondition())
+                {
+                    std::cout << "Inventory is open" << std:: endl;
+                    if(inventory.getIsInventoryFull())
+                    {
+                        std::cout << "Can drop item" << std:: endl;
+                        if(hasFlag(3))
+                        {
+                            inventory.dropItem(player_m);
+                        }
+                        else if(hasFlag(4))
+                        {
+                            inventory.dropItem(player_f);
+                        }
+                    }
+                    else
+                    {
+                        std::cout << "Inventory is empty" << std:: endl;
+                    }
+                    
+                }
+                else
+                {
+                    std::cout << "Inventory is not open" << std:: endl;
+                }
+            }
+
+
         //Key press events
         if(event.key.code == sf::Keyboard::Space || event.key.code == sf::Keyboard::Enter)
             textBox.Next();
+        else if(!inventory.getIsInventoryFull() && (event.key.code == sf::Keyboard::Q))
+            inventory.Exit();
+            interactionManager.setInventoryClosed();
     }
+    interactionManager.EventUpdate(event, inventory);
     interactionManager.EventUpdate(event, textBox);
 }
 
@@ -186,6 +235,7 @@ void drawInsideHouse(sf::RenderWindow& window)
     }
     //window.draw(player);
     window.draw(textBox);
+    window.draw(inventory);
 
     //Display
     window.display();
