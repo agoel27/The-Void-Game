@@ -137,14 +137,14 @@ void insideHouseEventUpdate(sf::Event& event)
     {
         if(event.key.code == sf::Keyboard::E)
         {
-            if(interactionManager.getInventoryCondition())
+            if(interactionManager.getInventoryCondition() && !inventory.getIsInventoryFull())
             {
                 std::cout << "Inventory is open" << std:: endl;
                 inventory.addItem(interactionManager.getInteractableToBeAdded());
             }
             else
             {
-                std::cout << "Inventory is not open" << std:: endl;
+                std::cout << "Inventory is not open or inventory is full" << std:: endl;
             }
         }
 
