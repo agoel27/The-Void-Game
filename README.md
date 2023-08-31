@@ -111,6 +111,12 @@ Includes a navigation diagram for our screens and the layout of each of those sc
  > * Complete the sections below (i.e. Screenshots, Installation/Usage, Testing)
  > * Plan one more sprint (that you will not necessarily complete before the end of the quarter). Your In-progress and In-testing columns should be empty (you are not doing more work currently) but your TODO column should have a full sprint plan in it as you have done before. This should include any known bugs (there should be some) or new features you would like to add. These should appear as issues/cards on your Project board.
  > * Make sure your README file and Project board are up-to-date reflecting the current status of your project (e.g. any changes that you have made during the project such as changes to your class diagram). Previous versions should still be visible through your commit history. 
+
+ ## Last Sprint
+  > We divided work roughly by who knows what part of the project best.
+  > Some bugs included collision phasing, the door being locked again if the key was dropped, and stacking things in inventory.
+  > We didn't get a chance to implement the strongsuit and beverage items, Reseting the game using the bed, the power boost icon, and using items from the inventory. 
+  > We each took 2 of these issues. 
  
 ## Screenshots
  ![Title Screen](https://github.com/cs100/final-project-thevoidgame/blob/master/titleScreen.png?raw=true)
